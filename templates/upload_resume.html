@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Resume</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2">
+</head>
+<body>
+
+<nav>
+    <div class="logo">ResumeAI</div>
+</nav>
+
+<div class="upload-container">
+
+    <div class="upload-box">
+
+        <h1>Upload Your Resume</h1>
+
+        <p>Get AI-powered ATS score & suggestions in seconds</p>
+
+        {% if message %}
+            <div class="success">{{ message }}</div>
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="file-box">
+                <input type="file" name="resume" required>
+            </div>
+
+            <a href="{% url 'upload_resume' %}"><button type="submit">Analyze Resume</button></a>
+        </form>
+       
+
+    </div>
+
+</div>
+
+
+</body>
+</html>
