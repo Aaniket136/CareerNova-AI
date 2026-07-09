@@ -1,89 +1,69 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Analyzer</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3"> <!-- v=3 kiya cache reset ke liye -->
 </head>
 <body>
-<nav>
 
+<nav>
     <div class="logo">
         ResumeAI
     </div>
-
     <ul>
-
         <li><a href="#">Home</a></li>
-
         <li><a href="#">Features</a></li>
-
         <li><a href="#">About</a></li>
-
         <li><a href="#">Contact</a></li>
-
     </ul>
-
 </nav>
+
 <div class="hero">
-
-    <div class="left">
-
+    <div class="hero-content"> <!-- Left content box -->
         <h1>AI Resume Analyzer</h1>
-
         <p>
             Analyze your resume, improve your ATS score,
             and receive AI-powered feedback in seconds.
         </p>
-
         <a href="{% url 'upload_resume' %}"><button>Upload Resume</button></a>
-
     </div>
 
-    <div class="right">
-
+    <div class="hero-img-container"> <!-- Right image container -->
         <img src="{% static 'images/about.jpg' %}" alt="Resume">
-
     </div>
-
 </div>
+
 <div class="features">
-
     <h2>Features</h2>
-
     <div class="feature-box">
-
-        <div class="card">ATS Score</div>
-        <div class="card">Keyword Matching</div>
-        <div class="card">AI Suggestions</div>
-        <div class="card">Skill Gap Analysis</div>
-
+        <!-- Classes updated to match .feature-card in CSS -->
+        <div class="feature-card"><h3>ATS Score</h3></div>
+        <div class="feature-card"><h3>Keyword Matching</h3></div>
+        <div class="feature-card"><h3>AI Suggestions</h3></div>
+        <div class="feature-card"><h3>Skill Gap Analysis</h3></div>
     </div>
-
 </div>
+
 <div class="how-it-works">
-
     <h2>How It Works</h2>
-
     <div class="steps">
-
         <div class="step">
             <h3>1. Upload Resume</h3>
             <p>Upload your resume in PDF or DOC format.</p>
         </div>
-
         <div class="step">
             <h3>2. AI Analysis</h3>
             <p>Our AI scans and analyzes your resume.</p>
         </div>
-
         <div class="step">
             <h3>3. Get Results</h3>
             <p>Receive ATS score and improvement tips.</p>
         </div>
-
     </div>
-
 </div>
+
 </body>
 </html>

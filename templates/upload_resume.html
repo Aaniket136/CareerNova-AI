@@ -1,43 +1,57 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Resume</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3">
 </head>
 <body>
 
 <nav>
     <div class="logo">ResumeAI</div>
+    <!-- Nav-buttons ko unki default dynamic positioning ke liye links format kiya -->
+    <div class="nav-links">
+                        <a href="{% url 'home' %}" style="text-decoration: none;">
+                    <button style="padding: 12px 24px; background: transparent; color: #94A3B8; border: 1px solid #334155; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; transition: 0.2s;">
+                         Home <i class="fa-solid fa-house" style="margin-left: 5px;"></i>
+                    </button>
+                </a>
+    </div>
 </nav>
 
 <div class="upload-container">
 
-    <div class="upload-box">
+    <!-- UPLOAD SECTION -->
+<div class="upload-box">
+                <h1>Upload Your Resume</h1>
+                <p>Get AI-powered ATS score & suggestions</p>
 
-        <h1>Upload Your Resume</h1>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="file-box">
+                        <input type="file" name="resume" required>
+                    </div>
+                    
+                    <div class="upload-notice" style="text-align: left; background: #0F172A; padding: 15px; border-radius: 8px; margin-bottom: 25px; border-left: 3px solid #FACC15;">
+                        <p style="color: #FACC15; font-weight: bold; margin: 0 0 8px 0; font-size: 14px;">
+                            <i class="fa-solid fa-circle-info"></i> Important Guidelines:
+                        </p>
+                        <ul style="margin: 0; padding-left: 18px; color: #cbd5e1; font-size: 13px; line-height: 1.6;">
+                            <li>Only <strong>PDF</strong> or <strong>DOCX</strong> formats are supported.</li>
+                            <li>Maximum file size limit is <strong>5MB</strong>.</li>
+                            <li>Ensure the resume is text-based and not a scanned image/photo.</li>
+                            <li>Your data is safe. Files are processed securely for AI analysis only.</li>
+                        </ul>
+                    </div>
 
-        <p>Get AI-powered ATS score & suggestions in seconds</p>
-
-        {% if message %}
-            <div class="success">{{ message }}</div>
-        {% endif %}
-
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-
-            <div class="file-box">
-                <input type="file" name="resume" required>
+                    <button type="submit">Analyze Resume</button>
+                </form>
             </div>
-
-            <a href="{% url 'upload_resume' %}"><button type="submit">Analyze Resume</button></a>
-        </form>
-       
-
-    </div>
+    
 
 </div>
-
 
 </body>
 </html>

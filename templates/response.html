@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Result - ResumeAI</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<nav>
+    <div class="logo">ResumeAI</div>
+    <div class="nav-links">
+                        <a href="{% url 'home' %}" style="text-decoration: none;">
+                    <button style="padding: 12px 24px; background: transparent; color: #94A3B8; border: 1px solid #334155; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; transition: 0.2s;">
+                         Home <i class="fa-solid fa-house" style="margin-left: 5px;"></i>
+                    </button>
+                </a>
+    </div>
+</nav>
+
+<div class="upload-container">
+
+    {% if data %}
+    <div class="result-container">
+        <div class="result-card">
+            
+            <div class="score-box">
+                ATS SCORE: {{ data.ats_score }}/100
+            </div>
+
+            <div class="section-block" style="text-align: left; margin-bottom: 35px;">
+                <h3 style="color: #4ADE80; font-size: 22px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-circle-check"></i> Strengths
+                </h3>
+                <ul style="border-left: 3px solid #4ADE80; padding-left: 20px;">
+                    {% for i in data.strengths %}
+                        <li style="margin-bottom: 10px; line-height: 1.6;">{{ i }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="section-block" style="text-align: left; margin-bottom: 35px;">
+                <h3 style="color: #F87171; font-size: 22px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-circle-xmark"></i> Areas to Improve
+                </h3>
+                <ul style="border-left: 3px solid #F87171; padding-left: 20px;">
+                    {% for i in data.weaknesses %}
+                        <li style="margin-bottom: 10px; line-height: 1.6;">{{ i }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="section-block" style="text-align: left; margin-bottom: 40px;">
+                <h3 style="color: #FACC15; font-size: 22px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-lightbulb"></i> AI Action Plan
+                </h3>
+                <ul style="border-left: 3px solid #FACC15; padding-left: 20px;">
+                    {% for i in data.improvements %}
+                        <li style="margin-bottom: 10px; line-height: 1.6;">{{ i }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="{% url 'upload_resume' %}">
+                    <button style="padding: 12px 30px; background: #FACC15; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s;">
+                        ← Analyze Another Resume
+                    </button>
+                </a>
+            </div>
+                        <hr style="border: 0; border-top: 1px solid #334155; margin-bottom: 30px;">
+
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                
+                <a href="{% url 'upload_resume' %}" style="text-decoration: none;">
+                    <button style="padding: 12px 24px; background: #334155; color: white; border: 1px solid #475569; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-arrow-left"></i> Analyze Another
+                    </button>
+                </a>
+
+                <button onclick="window.print()" style="padding: 12px 24px; background: #FACC15; color: black; border: none; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-download"></i> Download Report
+                </button>
+
+                <a href="{% url 'home' %}" style="text-decoration: none;">
+                    <button style="padding: 12px 24px; background: transparent; color: #94A3B8; border: 1px solid #334155; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; transition: 0.2s;">
+                        Go Home <i class="fa-solid fa-house" style="margin-left: 5px;"></i>
+                    </button>
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
