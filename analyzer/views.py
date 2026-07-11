@@ -6,7 +6,7 @@ import PyPDF2
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
 from google import genai
-from google.api_core import exceptions
+from google.genai import errors
 
 load_dotenv()
 
@@ -105,7 +105,7 @@ def upload_resume(request):
                     data = json.loads(response_text)
                     break
 
-                except exceptions.ResourceExhausted:
+                except errors.ServerError:
                     time.sleep(2)
 
                 except json.JSONDecodeError:
