@@ -11,7 +11,7 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     background: #0F172A;
     color: white;
-    overflow-x: hidden; /* Faltu horizontal scroll hatane ke liye */
+    overflow-x: hidden; 
 }
 
 /* =======================
@@ -37,7 +37,7 @@ nav{
     font-weight: bold;
 }
 
-/* Nav links jo toot kar niche aa rahe the unka fix */
+
 nav ul, nav .nav-links {
     display: flex !important;
     list-style: none;
@@ -46,7 +46,7 @@ nav ul, nav .nav-links {
     gap: 30px;
 }
 
-/* Links ka purple color change karke clean text white/yellow kiya */
+
 nav a {
     color: #cbd5e1 !important;
     text-decoration: none;
@@ -65,9 +65,9 @@ nav a:hover {
 .hero{
     min-height: 100vh;
     display: flex;
-    justify-content: space-between; /* Content aur Image ko dono ends par barabar rkhne ke liye */
+    justify-content: space-between; 
     align-items: center;
-    padding: 100px 80px 40px; /* Top padding badhai taaki content nav ke piche na chupe */
+    padding: 100px 80px 40px; 
     gap: 40px;
 }
 
@@ -106,7 +106,7 @@ nav a:hover {
     transform: translateY(-2px);
 }
 
-/* 👈 PHOTO KA SIZE CONTROL KARNE WALA SECTION */
+
 .hero-img-container {
     flex: 1;
     display: flex;
@@ -114,27 +114,27 @@ nav a:hover {
     align-items: center;
 }
 
-/* Photo ko bada hone se rokne ke liye responsive max-width lagai */
+
 .hero img, .hero-img-container img {
-    max-width: 450px; /* Isko aap 400px se 500px tak apne hisab se adjust kar sakte hain */
+    max-width: 500px; 
     width: 100%;
     height: auto;
     border-radius: 20px;
     object-fit: cover;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4); /* Premium drop shadow effect */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4); 
 }
 
 /* =======================
     FEATURES SECTION
 ======================= */
 .features{
-    padding: 80px 40px;
+    padding: 50px 30px;
     text-align: center;
 }
 
 .features h2{
     font-size: 42px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .feature-box{
@@ -163,7 +163,7 @@ nav a:hover {
     HOW IT WORKS
 ======================= */
 .how-it-works{
-    padding: 80px 40px;
+    padding: 50px 30px;
     text-align: center;
 }
 
@@ -194,7 +194,7 @@ nav a:hover {
 .upload-container{
     min-height: 100vh;
     display: flex;
-    flex-direction: column !important; /* elements ko side-by-side ki jagah ek ke niche ek laayega */
+    flex-direction: column !important; 
     justify-content: flex-start;
     align-items: center;
     padding: 120px 20px 60px;
@@ -252,7 +252,7 @@ input[type="file"]{
 ======================= */
 .result-container{
     width: 100%;
-    max-width: 850px; /* Content area ko perfect width di */
+    max-width: 850px; 
     margin: 0 auto;
 }
 
@@ -277,7 +277,6 @@ input[type="file"]{
     border-left: 5px solid #FACC15;
 }
 
-/* API Markdown aur Bullet Lists spacing */
 ul{
     line-height: 1.8;
     padding-left: 20px;
@@ -288,7 +287,7 @@ li{
     color: #e2e8f0;
 }
 @media print {
-    /* Print ke time navbar aur buttons ko chhupa do */
+
     nav, button, hr, a {
         display: none !important;
     }
@@ -304,4 +303,63 @@ li{
         color: black !important;
         box-shadow: none !important;
     }
+}
+/* =======================
+    CONTACT SECTION (HORIZONTAL FOOTER)
+======================= */
+.contact {
+    background: #1E293B; 
+    padding: 40px 60px;
+    text-align: center;
+    border-top: 1px solid #334155;
+    margin-top: 60px;
+}
+
+.contact h2 {
+    font-size: 28px;
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #FACC15; 
+}
+
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px; 
+    flex-wrap: wrap;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #cbd5e1;
+    font-size: 16px;
+    text-decoration: none; /* Underline hatane ke liye */
+    transition: 0.2s;
+}
+
+.contact-item i {
+   color: #FACC15;
+    font-size: 24px;
+}
+
+
+.contact-btn {
+    padding: 12px 25px;
+    background: #FACC15;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-btn:hover {
+  color: #FACC15;
+    transform: translateY(-2px);
 }

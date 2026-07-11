@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Analyzer</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3"> <!-- v=3 kiya cache reset ke liye -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -13,55 +14,118 @@
     <div class="logo">
         ResumeAI
     </div>
+
     <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Features</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
     </ul>
 </nav>
 
-<div class="hero">
-    <div class="hero-content"> <!-- Left content box -->
+
+<!-- HERO -->
+<div class="hero" id="home">
+
+    <div class="hero-content">
         <h1>AI Resume Analyzer</h1>
+
         <p>
             Analyze your resume, improve your ATS score,
             and receive AI-powered feedback in seconds.
         </p>
-        <a href="{% url 'upload_resume' %}"><button>Upload Resume</button></a>
+
+        <a href="{% url 'upload_resume' %}">
+            <button>Upload Resume</button>
+        </a>
     </div>
 
-    <div class="hero-img-container"> <!-- Right image container -->
+    <div class="hero-img-container">
         <img src="{% static 'images/about.jpg' %}" alt="Resume">
     </div>
+
 </div>
 
-<div class="features">
+
+<!-- FEATURES -->
+<div class="features" id="features">
+
     <h2>Features</h2>
+
     <div class="feature-box">
-        <!-- Classes updated to match .feature-card in CSS -->
-        <div class="feature-card"><h3>ATS Score</h3></div>
-        <div class="feature-card"><h3>Keyword Matching</h3></div>
-        <div class="feature-card"><h3>AI Suggestions</h3></div>
-        <div class="feature-card"><h3>Skill Gap Analysis</h3></div>
+
+        <div class="feature-card">
+            <h3>ATS Score</h3>
+            <p>Know how ATS evaluates your resume.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Keyword Matching</h3>
+            <p>Find missing keywords required for jobs.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>AI Suggestions</h3>
+            <p>Get smart recommendations powered by AI.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Skill Gap Analysis</h3>
+            <p>Discover missing skills to improve your resume.</p>
+        </div>
+
     </div>
+
 </div>
 
-<div class="how-it-works">
-    <h2>How It Works</h2>
+
+<!-- ABOUT -->
+<div class="how-it-works" id="about">
+
+    <h1>How It Works</h1>
+
     <div class="steps">
+
         <div class="step">
             <h3>1. Upload Resume</h3>
-            <p>Upload your resume in PDF or DOC format.</p>
+            <p>Upload your resume in PDF format.</p>
         </div>
+
         <div class="step">
             <h3>2. AI Analysis</h3>
-            <p>Our AI scans and analyzes your resume.</p>
+            <p>Gemini AI analyzes your resume and extracts useful insights.</p>
         </div>
+
         <div class="step">
             <h3>3. Get Results</h3>
-            <p>Receive ATS score and improvement tips.</p>
+            <p>Receive ATS score, strengths, weaknesses and improvements instantly.</p>
         </div>
+
+    </div>
+
+</div>
+
+
+<!-- CONTACT -->
+<div class="contact" id="contact">
+    <h2>Contact Us</h2>
+    
+    <div class="contact-links">
+       
+            <a href="mailto:tiwarianiket004@gmail.com" class="contact-item">
+                <i class="fa-solid fa-envelope"></i>
+            <span>tiwarianiket004@gmail.com</span>
+            </a>
+       
+        
+        <a href="https://www.linkedin.com/in/aniket-tiwari-916b74395" target="_blank" class="contact-item">
+            <i class="fa-brands fa-linkedin"></i>
+            <span>https://www.linkedin.com/in/aniket-tiwari-916b74395</span>
+        </a>
+
+        <a href="{% url 'upload_resume' %}">
+            <button class="contact-btn">Analyze Your Resume</button>
+        </a>
     </div>
 </div>
 
