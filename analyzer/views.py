@@ -21,60 +21,89 @@ def upload_resume(request):
     data = None
     text = ""
 
-    if request.method == 'POST':
-        file = request.FILES.get('resume')
+    if request.method == "POST":
+        file = request.FILES.get("resume")
 
         if file:
+
             fs = FileSystemStorage()
             filename = fs.save(file.name, file)
             file_path = fs.path(filename)
-            # 1. PDF → TEXT
-            with open(file_path, 'rb') as f:
+
+            # ---------------- PDF TO TEXT ---------------- #
+
+            with open(file_path, "rb") as f:
                 reader = PyPDF2.PdfReader(f)
+
                 for page in reader.pages:
                     page_text = page.extract_text()
                     if page_text:
                         text += page_text
-            # 2. PROMPT
+
+            # Empty PDF check
+            if not text.strip():
+                os.remove(file_path)
+                return render(request, "upload_resume.html", {
+                    "message": "Unable to extract text from the uploaded PDF."
+                })
+
+            # ---------------- PROMPT ---------------- #
+
             prompt = f"""
             You are an ATS Resume Analyzer.
 
-            Return ONLY valid JSON:
+            Return ONLY valid JSON.
+
+            Format:
 
             {{
-            "ats_score": 0,
-            "strengths": ["short point"],
-            "weaknesses": ["short point"],
-            "improvements": ["short point"]
+                "ats_score": 0,
+                "strengths": [
+                    "point"
+                ],
+                "weaknesses": [
+                    "point"
+                ],
+                "improvements": [
+                    "point"
+                ]
             }}
 
             Rules:
-            - Keep each point max 1 line
-            - ATS score out of 100 only
+            - Do NOT return markdown.
+            - Do NOT use ```json
+            - Return only JSON.
+            - ATS score must be between 0 and 100.
+            - Keep every point short (maximum one line).
 
             Resume:
+
             {text}
             """
-            # 3. AI CALL (RETRY SAFE)
-  
-            response_text = ""
 
-            for i in range(3):
+            # ---------------- GEMINI CALL ---------------- #
+
+            for _ in range(3):
+
                 try:
+
                     response = client.models.generate_content(
                         model="gemini-2.5-flash",
                         contents=prompt
                     )
 
-                    if response and response.text:
-                        response_text = response.text.strip()
+                    response_text = response.text.strip()
 
-                        # remove markdown if any
-                        if "```" in response_text:
-                            response_text = response_text.replace("```json", "").replace("```", "").strip()
+                    if response_text.startswith("```"):
+                        response_text = (
+                            response_text
+                            .replace("```json", "")
+                            .replace("```", "")
+                            .strip()
+                        )
 
-                        data = json.loads(response_text)
-                        break
+                    data = json.loads(response_text)
+                    break
 
                 except exceptions.ResourceExhausted:
                     time.sleep(2)
@@ -82,23 +111,32 @@ def upload_resume(request):
                 except json.JSONDecodeError:
                     data = {
                         "ats_score": 0,
-                        "strengths": ["Invalid AI response"],
+                        "strengths": ["AI returned an invalid response."],
                         "weaknesses": [],
-                        "improvements": ["Try again"]
+                        "improvements": ["Please try again."]
                     }
                     break
-            # 4. FINAL FALLBACK
+
+                except Exception:
+                    time.sleep(2)
+
+            # ---------------- FALLBACK ---------------- #
+
             if not data:
                 data = {
                     "ats_score": 0,
-                    "strengths": ["AI failed to respond"],
-                    "weaknesses": ["Try again"],
-                    "improvements": ["Retry upload"]
+                    "strengths": ["AI service is currently unavailable."],
+                    "weaknesses": [],
+                    "improvements": ["Please try again after some time."]
                 }
 
-            return render(request, 'response.html', {
-                'text': text,
-                'data': data
+            # ---------------- DELETE FILE ---------------- #
+
+            if os.path.exists(file_path):
+                os.remove(file_path)
+
+            return render(request, "response.html", {
+                "data": data
             })
 
-    return render(request, 'upload_resume.html')
+    return render(request, "upload_resume.html")
