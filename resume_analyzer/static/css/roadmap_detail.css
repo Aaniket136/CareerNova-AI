@@ -1,0 +1,308 @@
+body{
+    min-height:100vh;
+    margin:0;
+    background:#071426;
+    color:#ffffff;
+    overflow-x:hidden;
+}
+
+.roadmap-navbar{
+    height:72px;
+    display:flex;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:#071426;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.roadmap-logo{
+    color:#ffc107;
+    text-decoration:none;
+    font-size:25px;
+    font-weight:700;
+}
+
+.roadmap-page{
+    padding:55px 0 70px;
+}
+
+.roadmap-title{
+    text-align:center;
+    margin-bottom:38px;
+}
+
+.roadmap-badge{
+    display:inline-block;
+    padding:7px 14px;
+    color:#ffc107;
+    background:rgba(255,193,7,0.1);
+    border:1px solid rgba(255,193,7,0.25);
+    border-radius:50px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.roadmap-title h1{
+    margin:16px 0 8px;
+    font-size:2.4rem;
+    font-weight:700;
+}
+
+.roadmap-title p{
+    margin:0;
+    color:#9aa8ba;
+}
+
+.phase-tabs{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
+
+.phase-tab{
+    padding:11px 18px;
+    color:#aeb9c8;
+    background:#10233d;
+    border:1px solid #263d58;
+    border-radius:9px;
+    font-weight:600;
+    transition:0.2s;
+}
+
+.phase-tab span{
+    color:#ffc107;
+    margin-right:7px;
+}
+
+.phase-tab:hover,
+.phase-tab.active{
+    color:#111827;
+    background:#ffc107;
+    border-color:#ffc107;
+}
+
+.phase-tab.active span{
+    color:#111827;
+}
+
+.phase-content{
+    display:none;
+    max-width:1000px;
+    margin:auto;
+    padding:30px;
+    background:#10233d;
+    border:1px solid rgba(255,193,7,0.2);
+    border-radius:18px;
+    box-shadow:0 20px 45px rgba(0,0,0,0.25);
+}
+
+.phase-content.active{
+    display:block;
+}
+
+.phase-header{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.phase-number{
+    width:55px;
+    height:55px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#ffc107;
+    background:rgba(255,193,7,0.1);
+    border:1px solid rgba(255,193,7,0.25);
+    border-radius:13px;
+    font-weight:700;
+}
+
+.phase-header span{
+    color:#ffc107;
+    font-size:13px;
+    font-weight:700;
+    text-transform:uppercase;
+}
+
+.phase-header h2{
+    margin:4px 0 0;
+    font-size:1.6rem;
+    font-weight:700;
+}
+
+.roadmap-accordion .accordion-item{
+    margin-bottom:12px;
+    overflow:hidden;
+    background:#0b1a2e;
+    border:1px solid #263d58;
+    border-radius:10px;
+}
+
+.roadmap-accordion .accordion-button{
+    padding:18px;
+    color:#ffffff;
+    background:#0b1a2e;
+    box-shadow:none;
+    font-weight:600;
+}
+
+.roadmap-accordion .accordion-button:not(.collapsed){
+    color:#ffc107;
+    background:#10233d;
+}
+
+.roadmap-accordion .accordion-button::after{
+    filter:brightness(0) invert(1);
+}
+
+.topic-number{
+    display:inline-flex;
+    width:34px;
+    height:34px;
+    align-items:center;
+    justify-content:center;
+    margin-right:13px;
+    color:#ffc107;
+    background:rgba(255,193,7,0.1);
+    border-radius:8px;
+    font-size:13px;
+}
+
+.roadmap-accordion .accordion-body{
+    padding:22px;
+    background:#10233d;
+}
+
+.topic-detail{
+    height:100%;
+    padding:18px;
+    background:#08172a;
+    border:1px solid #263d58;
+    border-radius:10px;
+}
+
+.topic-detail h5{
+    margin-bottom:14px;
+    color:#ffc107;
+    font-size:15px;
+}
+
+.topic-detail ul{
+    margin:0;
+    padding-left:19px;
+}
+
+.topic-detail li{
+    margin-bottom:8px;
+    color:#c3cedc;
+    line-height:1.5;
+}
+
+.topic-outcome{
+    margin-top:18px;
+    padding:15px;
+    color:#c3cedc;
+    background:rgba(255,193,7,0.07);
+    border-left:3px solid #ffc107;
+    border-radius:7px;
+}
+
+.topic-outcome strong{
+    color:#ffc107;
+    margin-right:5px;
+}
+
+.phase-goal{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin-top:25px;
+    padding-top:20px;
+    border-top:1px solid rgba(255,255,255,0.08);
+}
+
+.phase-goal p{
+    margin:0;
+    color:#aeb9c8;
+}
+
+.phase-goal strong{
+    color:#ffffff;
+}
+
+.phase-navigation{
+    display:flex;
+    justify-content:space-between;
+    margin-top:25px;
+}
+
+.no-roadmap{
+    max-width:600px;
+    margin:auto;
+    padding:50px;
+    text-align:center;
+    background:#10233d;
+    border-radius:18px;
+}
+
+@media(max-width:576px){
+
+    .roadmap-page{
+        padding:35px 0;
+    }
+
+    .roadmap-title h1{
+        font-size:1.9rem;
+    }
+
+    .phase-content{
+        padding:20px 15px;
+    }
+
+    .phase-header h2{
+        font-size:1.25rem;
+    }
+
+    .phase-tab{
+        padding:9px 12px;
+        font-size:13px;
+    }
+
+    .phase-navigation{
+        gap:10px;
+    }
+
+}
+/* Bottom Back to Home */
+
+.roadmap-bottom-action {
+    display: flex;
+    justify-content: center;
+    padding: 35px 20px 55px;
+}
+
+.back-home-btn {
+    padding: 12px 28px;
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #475569;
+    border-radius: 9px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+.back-home-btn:hover {
+    color: #111827;
+    background: #ffc107;
+    border-color: #ffc107;
+    transform: translateY(-2px);
+}

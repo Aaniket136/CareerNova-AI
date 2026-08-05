@@ -363,3 +363,91 @@ li{
   color: #FACC15;
     transform: translateY(-2px);
 }
+
+
+/* Career Coach Floating Form */
+
+.career-form-card {
+    background: #16213e !important;
+    border: 1px solid rgba(255, 193, 7, 0.25) !important;
+    border-radius: 18px !important;
+    overflow: hidden;
+}
+
+.career-form-card .card-body {
+    background: #16213e !important;
+}
+
+.career-form-body {
+    max-height: 68vh;
+    overflow-y: auto;
+}
+
+/* Form scrollbar */
+
+.career-form-body::-webkit-scrollbar {
+    width: 7px;
+}
+
+.career-form-body::-webkit-scrollbar-track {
+    background: #101827;
+}
+
+.career-form-body::-webkit-scrollbar-thumb {
+    background: #ffc107;
+    border-radius: 10px;
+}
+
+/* Labels */
+
+.career-form-card .form-label {
+    color: #ffffff !important;
+}
+
+/* Inputs */
+
+.career-form-card .form-control,
+.career-form-card .form-select {
+    background-color: #0b1120 !important;
+    color: #ffffff !important;
+    border: 1px solid #334155 !important;
+}
+
+/* Placeholder */
+
+.career-form-card .form-control::placeholder {
+    color: #94a3b8 !important;
+}
+
+/* Select options */
+
+.career-form-card .form-select option {
+    background-color: #0b1120;
+    color: #ffffff;
+}
+
+/* Focus */
+
+.career-form-card .form-control:focus,
+.career-form-card .form-select:focus {
+    background-color: #0b1120 !important;
+    color: #ffffff !important;
+    border-color: #ffc107 !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.12) !important;
+}
+
+/* Help text */
+
+.career-form-card small {
+    color: #94a3b8 !important;
+}
+.career-page {
+    min-height: calc(100vh - 72px);
+    display: flex;
+    align-items: center;
+    padding: 30px 0;
+}
+/* =================================
+   AI CAREER COACH PAGE
+================================= */
+

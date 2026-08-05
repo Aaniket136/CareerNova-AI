@@ -1,0 +1,570 @@
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: #071426;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   STICKY NAVBAR
+========================= */
+
+.career-result-navbar {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #071426;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.result-logo {
+    color: #ffc107;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.result-logo:hover {
+    color: #ffca2c;
+}
+
+.result-nav-button {
+    padding: 9px 18px;
+    background: #ffc107;
+    color: #111827;
+    border: none;
+    font-weight: 600;
+}
+
+.result-nav-button:hover {
+    background: #ffca2c;
+    color: #111827;
+}
+
+
+/* =========================
+   MAIN PAGE
+========================= */
+
+.career-result-page {
+    min-height: calc(100vh - 72px);
+    padding: 60px 0 70px;
+}
+
+
+/* =========================
+   PAGE HEADING
+========================= */
+
+.result-heading {
+    max-width: 760px;
+    margin: 0 auto 45px;
+}
+
+.result-badge {
+    display: inline-block;
+    padding: 7px 15px;
+    margin-bottom: 18px;
+    color: #ffc107;
+    background: rgba(255, 193, 7, 0.09);
+    border: 1px solid rgba(255, 193, 7, 0.22);
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.result-heading h1 {
+    margin-bottom: 12px;
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.result-heading p {
+    margin: 0;
+    color: #aeb9c8;
+    font-size: 1rem;
+}
+
+
+/* =========================
+   READINESS SCORE
+========================= */
+
+.readiness-card {
+    position: relative;
+    margin-bottom: 50px;
+    padding: 42px 25px;
+    overflow: hidden;
+    background: #10233d;
+    border: 1px solid rgba(255, 193, 7, 0.25);
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.readiness-card::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    top: -100px;
+    right: -70px;
+    background: rgba(255, 193, 7, 0.06);
+    border-radius: 50%;
+}
+
+.readiness-label {
+    position: relative;
+    margin-bottom: 10px;
+    color: #aeb9c8;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.readiness-score {
+    position: relative;
+    color: #ffc107;
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.readiness-score span {
+    color: #aeb9c8;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.readiness-text {
+    position: relative;
+    max-width: 450px;
+    margin: 15px auto 0;
+    color: #94a3b8;
+}
+
+
+/* =========================
+   COMMON SECTION
+========================= */
+
+.result-section {
+    margin-bottom: 45px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.section-heading h3 {
+    margin: 0 0 4px;
+    color: #ffffff;
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.section-heading p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 0.88rem;
+}
+
+.section-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.2);
+    border-radius: 12px;
+    font-size: 1.25rem;
+}
+
+
+/* =========================
+   CAREER SUMMARY
+========================= */
+
+.summary-card {
+    padding: 28px;
+    background: #10233d;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 4px solid #ffc107;
+    border-radius: 14px;
+}
+
+.summary-card p {
+    margin: 0;
+    color: #d5dce6;
+    line-height: 1.8;
+}
+
+
+/* =========================
+   STRENGTHS AND SKILL GAPS
+========================= */
+
+.result-card {
+    padding: 28px;
+    background: #10233d;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.result-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 193, 7, 0.3);
+}
+
+.result-card-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+.result-card-title h3 {
+    margin: 0 0 4px;
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.result-card-title p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 0.85rem;
+}
+
+.success-icon {
+    color: #ffc107;
+}
+
+.gap-icon {
+    color: #ffc107;
+}
+
+.result-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.result-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px;
+    background: #08172a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.result-list-item span {
+    width: 23px;
+    height: 23px;
+    min-width: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 193, 7, 0.12);
+    color: #ffc107;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.result-list-item p {
+    margin: 0;
+    color: #d5dce6;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.empty-text {
+    margin: 0;
+    color: #94a3b8;
+}
+
+
+/* =========================
+   PRIORITY SKILLS
+========================= */
+
+.priority-skill-card {
+    height: 100%;
+    min-height: 105px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 22px;
+    background: #10233d;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.priority-skill-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 193, 7, 0.45);
+}
+
+.skill-number {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 193, 7, 0.12);
+    color: #ffc107;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.priority-skill-card p {
+    margin: 0;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.result-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 50px;
+}
+
+.result-primary-button {
+    padding: 12px 24px;
+    background: #ffc107;
+    color: #111827;
+    border: none;
+    font-weight: 700;
+}
+
+.result-primary-button:hover {
+    background: #ffca2c;
+    color: #111827;
+}
+
+.result-secondary-button {
+    padding: 12px 24px;
+    color: #ffffff;
+    border: 1px solid #475569;
+    font-weight: 600;
+}
+
+.result-secondary-button:hover {
+    color: #ffc107;
+    border-color: #ffc107;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 767px) {
+
+    .career-result-page {
+        padding: 40px 0 55px;
+    }
+
+    .result-heading {
+        margin-bottom: 35px;
+    }
+
+    .result-heading h1 {
+        font-size: 2rem;
+    }
+
+    .readiness-card {
+        padding: 35px 20px;
+    }
+
+    .readiness-score {
+        font-size: 4.2rem;
+    }
+
+    .result-card {
+        padding: 22px;
+    }
+
+    .summary-card {
+        padding: 22px;
+    }
+
+    .result-actions {
+        flex-direction: column;
+    }
+
+    .result-actions .btn {
+        width: 100%;
+    }
+
+}
+/* =========================
+   CAREER ROADMAP
+========================= */
+
+.roadmap-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.roadmap-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px;
+    background: #10233d;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    transition: 0.25s ease;
+}
+
+.roadmap-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 193, 7, 0.4);
+}
+
+.roadmap-number {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 193, 7, 0.12);
+    color: #ffc107;
+    border: 1px solid rgba(255, 193, 7, 0.25);
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.roadmap-content {
+    flex: 1;
+}
+
+.roadmap-duration {
+    display: inline-block;
+    margin-bottom: 6px;
+    color: #ffc107;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.roadmap-content h4 {
+    margin: 0 0 18px;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.roadmap-topics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.roadmap-topic {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 11px;
+    background: #08172a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 9px;
+}
+
+.roadmap-topic span {
+    color: #ffc107;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.roadmap-topic p {
+    margin: 0;
+    color: #d5dce6;
+    font-size: 0.86rem;
+    line-height: 1.5;
+}
+
+.roadmap-goal {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.roadmap-goal span {
+    font-size: 1rem;
+}
+
+.roadmap-goal p {
+    margin: 0;
+    color: #aeb9c8;
+    font-size: 0.88rem;
+}
+
+.roadmap-goal strong {
+    color: #ffffff;
+}
+
+
+/* =========================
+   ROADMAP MOBILE
+========================= */
+
+@media (max-width: 767px) {
+
+    .roadmap-card {
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .roadmap-topics {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .roadmap-card {
+        flex-direction: column;
+    }
+
+}

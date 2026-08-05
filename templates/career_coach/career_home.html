@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Career Coach | ResumeAI</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/career_coach.css' %}">
+</head>
+
+<body>
+
+    <nav class="career-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="{% url 'home' %}" class="career-logo">AI-Powered Coach</a>
+
+            <a href="{% url 'home' %}" class="btn btn-warning fw-semibold">Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="career-page">
+        <div class="container">
+
+            <div class="career-title">
+                <h1>AI Career Coach</h1>
+                <p>Create a personalized career roadmap based on your profile.</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+
+                    <div class="career-card">
+
+                        <div class="career-card-header">
+                            <h4>Career Details</h4>
+                        </div>
+
+                        <div class="career-card-body">
+
+                            <form method="POST" id="careerForm">
+                                {% csrf_token %}
+
+                                <div class="mb-4">
+                                    <label for="education" class="career-label d-block">Current Education</label>
+                                    <input type="text" id="education" name="education" class="form-control career-input" placeholder="Example: BCA, B.Tech, Graduate" required>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="skills" class="career-label d-block">Current Skills</label>
+                                    <textarea id="skills" name="skills" class="form-control career-input" rows="4" placeholder="Example: Python, Django, MySQL, Git" required></textarea>
+                                    <div class="career-help">Separate your skills using commas.</div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="target_role" class="career-label d-block">Target Career Role</label>
+                                    <input type="text" id="target_role" name="target_role" class="form-control career-input" placeholder="Example: Backend Developer" required>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="current_level" class="career-label d-block">Current Level</label>
+
+                                    <select id="current_level" name="current_level" class="form-select career-input" required>
+                                        <option value="" selected disabled>Select your current level</option>
+                                        <option value="Beginner">Beginner</option>
+                                        <option value="Intermediate">Intermediate</option>
+                                        <option value="Advanced">Advanced</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="timeline" class="career-label d-block">Goal Timeline</label>
+
+                                    <select id="timeline" name="timeline" class="form-select career-input" required>
+                                        <option value="" selected disabled>Select your timeline</option>
+                                        <option value="3 Months">3 Months</option>
+                                        <option value="6 Months">6 Months</option>
+                                        <option value="9 Months">9 Months</option>
+                                        <option value="12 Months">12 Months</option>
+                                    </select>
+                                </div>
+
+                                
+
+                            </form>
+                            
+                        </div>
+
+                    </div>
+                    <br>
+                 
+                
+                    <button type="submit" form="careerForm" id="generateButton" class="btn career-button w-100">
+                                    <span id="buttonText"> Generate My Career Roadmap</span>
+                     </button>
+
+   
+
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        document.getElementById("careerForm").addEventListener("submit", function () {
+            document.getElementById("generateButton").disabled = true;
+            document.getElementById("buttonText").innerText = "AI is creating your roadmap...";
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,233 @@
+
+
+    body {
+        min-height: 100vh;
+        margin: 0;
+        background: #071426;
+        color: #ffffff;
+        overflow-x: hidden;
+    }
+
+    /* Top Navbar Ko Sticky Bano Taaki Scroll Pe Hide Na Ho */
+    .career-navbar {
+        height: 72px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        position: sticky;       /* Header ko scroll par fix rakhta hai */
+        top: 0;                 /* Top par zero distance se stick karega */
+        z-index: 1000;          /* Taaki baki content iske peeche se scroll ho */
+        background: #071426;    /* Background color zaroori hai taaki peeche ka content na dikhe */
+    }
+    .career-logo {
+    color: #ffc107;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    }
+
+    .career-logo:hover {
+        color: #ffca2c;
+    }
+
+    /* Outer page scroll rahega */
+
+    .career-page {
+        min-height: calc(100vh - 72px);
+        display: flex;
+        align-items: center;
+        padding: 25px 0;
+    }
+
+    .career-title {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .career-title h1 {
+        margin-bottom: 5px;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .career-title p {
+        margin: 0;
+        color: #aeb9c8;
+    }
+
+    /* Main floating card */
+
+    .career-card {
+        width: 100%;
+        height: 76vh;
+        max-height: 700px;
+        display: flex;
+        flex-direction: column;
+        background: #10233d;
+        border: 1px solid rgba(255, 193, 7, 0.22);
+        border-radius: 18px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+
+    /* Header fixed inside card */
+
+    .career-card-header {
+        flex: 0 0 auto;
+        padding: 20px 28px;
+        background: #10233d;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        position: relative;
+        z-index: 2;
+    }
+
+    .career-card-header h4 {
+        margin: 0;
+        color: #ffffff;
+        font-weight: 700;
+    }
+
+    /* Sirf form area scroll hoga */
+
+    .career-card-body {
+        flex: 1 1 auto;
+        min-height: 0;
+        padding: 28px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-width: thin;
+        scrollbar-color: #ffc107 #0a182b;
+    }
+
+    /* Scrollbar */
+
+    .career-card-body::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    .career-card-body::-webkit-scrollbar-track {
+        background: #0a182b;
+    }
+
+    .career-card-body::-webkit-scrollbar-thumb {
+        background: #ffc107;
+        border-radius: 10px;
+    }
+
+    .career-card-body::-webkit-scrollbar-thumb:hover {
+        background: #ffca2c;
+    }
+
+    /* Footer / button fixed inside card */
+
+    .career-card-footer {
+        flex: 0 0 auto;
+        padding: 18px 28px;
+        background: #10233d;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Labels */
+
+    .career-label {
+        display: block;
+        margin-bottom: 8px;
+        color: #ffffff;
+        font-weight: 600;
+    }
+
+    /* Inputs */
+
+    .career-input {
+        min-height: 50px;
+        background: #08172a !important;
+        color: #ffffff !important;
+        border: 1px solid #34465c !important;
+        border-radius: 9px;
+    }
+
+    .career-input::placeholder {
+        color: #7f8da0 !important;
+    }
+
+    .career-input:focus {
+        background: #08172a !important;
+        color: #ffffff !important;
+        border-color: #ffc107 !important;
+        box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.12) !important;
+    }
+
+    .career-input option {
+        background: #08172a;
+        color: #ffffff;
+    }
+
+    .career-help {
+        margin-top: 7px;
+        color: #8f9caf;
+        font-size: 0.82rem;
+    }
+
+    /* Generate button */
+
+    .career-button {
+        min-height: 52px;
+        background: #ffc107;
+        color: #111827;
+        border: none;
+        border-radius: 9px;
+        font-weight: 700;
+        transition: 0.2s;
+    }
+
+    .career-button:hover {
+        background: #ffca2c;
+        color: #111827;
+        transform: translateY(-1px);
+    }
+
+    .career-button:disabled {
+        background: #d6a600;
+        color: #111827;
+        opacity: 1;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 576px) {
+
+        .career-page {
+            min-height: calc(100vh - 72px);
+            align-items: flex-start;
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+
+        .career-title h1 {
+            font-size: 1.7rem;
+        }
+
+        .career-card {
+            height: 76vh;
+            max-height: none;
+        }
+
+        .career-card-header,
+        .career-card-body,
+        .career-card-footer {
+            padding-left: 18px;
+            padding-right: 18px;
+        }
+
+        .career-card-header {
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+
+        .career-card-footer {
+            padding-top: 14px;
+            padding-bottom: 14px;
+        }
+    }
