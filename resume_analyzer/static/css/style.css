@@ -207,7 +207,7 @@ nav a:hover {
     border-radius: 15px;
     text-align: center;
     width: 100%;
-    max-width: 480px;
+    max-width: 600px;
     color: white;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
@@ -247,63 +247,6 @@ input[type="file"]{
     background: #eab308;
 }
 
-/* =======================
-    RESULT SECTION FIX
-======================= */
-.result-container{
-    width: 100%;
-    max-width: 850px; 
-    margin: 0 auto;
-}
-
-.result-card{
-    background: #1E293B;
-    padding: 35px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-.score-box{
-    background: #111827;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    color: #FACC15;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    border-left: 5px solid #FACC15;
-}
-
-ul{
-    line-height: 1.8;
-    padding-left: 20px;
-}
-
-li{
-    margin-bottom: 12px;
-    color: #e2e8f0;
-}
-@media print {
-
-    nav, button, hr, a {
-        display: none !important;
-    }
-    body {
-        background: white !important;
-        color: black !important;
-    }
-    .upload-container {
-        padding: 0 !important;
-    }
-    .result-card {
-        background: white !important;
-        color: black !important;
-        box-shadow: none !important;
-    }
-}
 /* =======================
     CONTACT SECTION (HORIZONTAL FOOTER)
 ======================= */
@@ -722,5 +665,9 @@ li{
         flex-direction: column;
     }
 
+}
+.career-navbar .btn-warning,
+.career-navbar .btn-warning:hover {
+    color: #111827 !important;
 }
 

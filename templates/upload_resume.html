@@ -1,55 +1,89 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Resume</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3">
+
+    <title>Upload Resume | CareerNova</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=5">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
-<nav>
-    <div class="logo">ResumeAI</div>
-    <!-- Nav-buttons ko unki default dynamic positioning ke liye links format kiya -->
-    <div class="nav-links">
-                        <a href="{% url 'home' %}" style="text-decoration: none;">
-                    <button style="padding: 12px 24px; background: transparent; color: #94A3B8; border: 1px solid #334155; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; transition: 0.2s;">
-                         Home <i class="fa-solid fa-house" style="margin-left: 5px;"></i>
-                    </button>
-                </a>
-    </div>
+<nav class="career-navbar">
+
+    <div class="logo">Career<span>Nova</span></div>
+
+    <a href="{% url 'home' %}" class="btn btn-warning fw-semibold">
+        Back to Home
+    </a>
+
 </nav>
 
 <div class="upload-container">
 
-    <!-- UPLOAD SECTION -->
-<div class="upload-box">
-                <h1>Upload Your Resume</h1>
-                <p>Get AI-powered ATS score & suggestions</p>
+    <div class="upload-box">
 
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="file-box">
-                        <input type="file" name="resume" required>
-                    </div>
-                    
-                    <div class="upload-notice" style="text-align: left; background: #0F172A; padding: 15px; border-radius: 8px; margin-bottom: 25px; border-left: 3px solid #FACC15;">
-                        <p style="color: #FACC15; font-weight: bold; margin: 0 0 8px 0; font-size: 14px;">
-                            <i class="fa-solid fa-circle-info"></i> Important Guidelines:
-                        </p>
-                        <ul style="margin: 0; padding-left: 18px; color: #cbd5e1; font-size: 13px; line-height: 1.6;">
-                            <li>Only <strong>PDF</strong> or <strong>DOCX</strong> formats are supported.</li>
-                            <li>Maximum file size limit is <strong>5MB</strong>.</li>
-                            <li>Ensure the resume is text-based and not a scanned image/photo.</li>
-                            <li>Your data is safe. Files are processed securely for AI analysis only.</li>
-                        </ul>
-                    </div>
+        <h1>Upload Your Resume</h1>
 
-                    <button type="submit">Analyze Resume</button>
-                </form>
+        <p>Get an AI-powered ATS score, resume feedback and improvement suggestions.</p>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="file-box">
+                <input type="file" name="resume" accept=".pdf,.doc,.docx" required>
             </div>
-    
+
+
+            <div class="upload-notice" style="text-align: left; background: #0F172A; padding: 15px; border-radius: 8px; margin-bottom: 25px; border-left: 3px solid #FACC15;">
+
+                <p style="color: #FACC15; font-weight: bold; margin: 0 0 8px; font-size: 14px;">
+                    <i class="fa-solid fa-circle-info"></i> Important Guidelines
+                </p>
+
+                <ul style="margin: 0; padding-left: 18px; color: #cbd5e1; font-size: 13px; line-height: 1.6;">
+                    <li>Only <strong>PDF</strong> or <strong>DOCX</strong> files are supported.</li>
+                    <li>Maximum file size: <strong>5 MB</strong>.</li>
+                    <li>Use a text-based resume instead of a scanned image.</li>
+                    <li>Your resume is processed only for AI analysis.</li>
+                </ul>
+
+            </div>
+
+
+            <button type="submit">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                Analyze Resume
+            </button>
+
+        </form>
+
+
+        <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #334155;">
+
+            <p style="margin-bottom: 12px; font-size: 14px;">
+                Want a personalized career roadmap?
+            </p>
+
+            <a href="{% url 'career_home' %}" style="text-decoration: none;">
+
+                <button type="button" style="background: transparent; color: #FACC15; border: 1px solid #FACC15;">
+                    <i class="fa-solid fa-compass"></i>
+                    Explore AI Career Coach
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
 
 </div>
 

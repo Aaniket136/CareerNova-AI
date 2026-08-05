@@ -1,0 +1,452 @@
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #071426;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.career-navbar {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #071426;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo {
+    color: #ffc107;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: #ffffff;
+}
+
+.career-navbar .btn-warning,
+.career-navbar .btn-warning:hover {
+    color: #111827 !important;
+}
+
+
+/* =========================
+   RESPONSE PAGE
+========================= */
+
+.response-page {
+    min-height: calc(100vh - 72px);
+    padding: 55px 20px 70px;
+}
+
+.result-container {
+    width: 100%;
+    max-width: 1050px;
+    margin: auto;
+}
+
+
+/* =========================
+   HEADING
+========================= */
+
+.result-heading {
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.result-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    color: #ffc107;
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.25);
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.result-heading h1 {
+    margin: 18px 0 10px;
+    font-size: 2.5rem;
+}
+
+.result-heading p {
+    margin: 0;
+    color: #9aa8bb;
+    font-size: 1rem;
+}
+
+
+/* =========================
+   ATS SCORE
+========================= */
+
+.score-card {
+    max-width: 500px;
+    margin: 0 auto 30px;
+    padding: 32px;
+    text-align: center;
+    background: #10233d;
+    border: 1px solid rgba(255, 193, 7, 0.25);
+    border-radius: 18px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+}
+
+.score-card p {
+    margin: 0 0 8px;
+    color: #aeb9c8;
+    font-size: 16px;
+}
+
+.score-value {
+    color: #ffc107;
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.score-value span {
+    color: #aeb9c8;
+    font-size: 1.4rem;
+}
+
+.score-card small {
+    display: block;
+    margin-top: 12px;
+    color: #8290a3;
+}
+
+
+/* =========================
+   STRENGTHS & IMPROVEMENTS
+========================= */
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    margin-bottom: 22px;
+}
+
+.analysis-card,
+.action-card {
+    padding: 28px;
+    background: #10233d;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.analysis-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.analysis-title h3 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.analysis-title i {
+    font-size: 21px;
+}
+
+.strength-card .analysis-title i {
+    color: #4ade80;
+}
+
+.weakness-card .analysis-title i {
+    color: #fb7185;
+}
+
+.analysis-card ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.analysis-card li {
+    position: relative;
+    margin-bottom: 13px;
+    padding-left: 22px;
+    color: #c7d1de;
+    line-height: 1.6;
+}
+
+.analysis-card li:last-child {
+    margin-bottom: 0;
+}
+
+.strength-card li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #4ade80;
+    font-weight: bold;
+}
+
+.weakness-card li::before {
+    content: "•";
+    position: absolute;
+    left: 2px;
+    color: #fb7185;
+    font-size: 20px;
+}
+
+
+/* =========================
+   AI ACTION PLAN
+========================= */
+
+.action-card {
+    margin-bottom: 22px;
+}
+
+.action-card .analysis-title i {
+    color: #ffc107;
+}
+
+.action-list {
+    display: grid;
+    gap: 13px;
+}
+
+.action-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    background: #08172a;
+    border-radius: 10px;
+}
+
+.action-item span {
+    min-width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111827;
+    background: #ffc107;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.action-item p {
+    margin: 6px 0 0;
+    color: #c7d1de;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   ROADMAP CTA
+========================= */
+
+.roadmap-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 30px;
+    padding: 30px;
+    background: linear-gradient(
+        135deg,
+        #10233d,
+        #132b49
+    );
+    border: 1px solid rgba(255, 193, 7, 0.25);
+    border-radius: 16px;
+}
+
+.roadmap-icon {
+    width: 46px;
+    height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    color: #111827;
+    background: #ffc107;
+    border-radius: 12px;
+}
+
+.roadmap-cta h3 {
+    margin: 0 0 8px;
+    font-size: 1.35rem;
+}
+
+.roadmap-cta p {
+    max-width: 580px;
+    margin: 0;
+    color: #aeb9c8;
+    line-height: 1.6;
+}
+
+.roadmap-button {
+    min-width: 220px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 20px;
+    color: #111827;
+    background: #ffc107;
+    border-radius: 9px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.roadmap-button:hover {
+    color: #111827;
+    background: #ffca2c;
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   BOTTOM BUTTONS
+========================= */
+
+.result-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.secondary-action,
+.primary-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 48px;
+    padding: 12px 22px;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.secondary-action {
+    color: #d5deea;
+    background: transparent;
+    border: 1px solid #40526a;
+}
+
+.secondary-action:hover {
+    color: #ffffff;
+    background: #10233d;
+}
+
+.primary-action {
+    color: #111827;
+    background: #ffc107;
+    border: none;
+}
+
+.primary-action:hover {
+    background: #ffca2c;
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .career-navbar {
+        padding: 0 20px;
+    }
+
+    .response-page {
+        padding: 35px 15px 50px;
+    }
+
+    .result-heading h1 {
+        font-size: 2rem;
+    }
+
+    .score-value {
+        font-size: 3.3rem;
+    }
+
+    .analysis-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .roadmap-cta {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .roadmap-button {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .career-navbar .btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .analysis-card,
+    .action-card,
+    .score-card,
+    .roadmap-cta {
+        padding: 20px;
+    }
+
+    .result-heading h1 {
+        font-size: 1.75rem;
+    }
+
+    .result-actions {
+        flex-direction: column;
+    }
+
+    .secondary-action,
+    .primary-action {
+        width: 100%;
+    }
+
+}

@@ -40,14 +40,13 @@ def upload_resume(request):
                     if page_text:
                         text += page_text
 
-            # Empty PDF check
+        
             if not text.strip():
                 os.remove(file_path)
                 return render(request, "upload_resume.html", {
                     "message": "Unable to extract text from the uploaded PDF."
                 })
 
-            # ---------------- PROMPT ---------------- #
 
             prompt = f"""
             You are an ATS Resume Analyzer.
@@ -81,7 +80,7 @@ def upload_resume(request):
             {text}
             """
 
-            # ---------------- GEMINI CALL ---------------- #
+   
 
             for _ in range(3):
 
@@ -120,7 +119,7 @@ def upload_resume(request):
                 except Exception:
                     time.sleep(2)
 
-            # ---------------- FALLBACK ---------------- #
+       
 
             if not data:
                 data = {
@@ -130,7 +129,7 @@ def upload_resume(request):
                     "improvements": ["Please try again after some time."]
                 }
 
-            # ---------------- DELETE FILE ---------------- #
+        
 
             if os.path.exists(file_path):
                 os.remove(file_path)
