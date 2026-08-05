@@ -1,133 +1,199 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume Analyzer</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4">
+
+    <title>CareerNova | AI Resume & Career Coach</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=5">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
+<!-- NAVBAR -->
+
 <nav>
-    <div class="logo">
-        ResumeAI
-    </div>
+    <div class="logo">Career<span>Nova</span></div>
 
     <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="#features">Features</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
 </nav>
 
 
 <!-- HERO -->
-<div class="hero" id="home">
+
+<section class="hero" id="home">
 
     <div class="hero-content">
-        <h1>AI Resume Analyzer</h1>
+
+        <span class="hero-badge">✨ AI-Powered Career Platform</span>
+
+        <h1>Build a Better Resume. <span>Shape a Better Career.</span></h1>
 
         <p>
-            Analyze your resume, improve your ATS score,
-            and receive AI-powered feedback in seconds.
+            CareerNova uses AI to analyze your resume, identify skill gaps
+            and create a personalized career roadmap based on your goals.
         </p>
 
-        <a href="{% url 'upload_resume' %}">
-            <button>Upload Resume</button>
-        </a>
+        <div class="hero-buttons">
+            <a href="{% url 'upload_resume' %}">
+                <button class="primary-btn"><i class="fa-solid fa-file-arrow-up"></i> Analyze Resume</button>
+            </a>
+
+            <a href="{% url 'career_home' %}">
+                <button class="secondary-btn"><i class="fa-solid fa-compass"></i> Explore Career Coach</button>
+            </a>
+        </div>
+
     </div>
 
     <div class="hero-img-container">
-        <img src="{% static 'images/about.jpg' %}" alt="Resume">
+        <img src="{% static 'images/about.jpg' %}" alt="AI Career Guidance">
     </div>
 
-</div>
+</section>
 
 
 <!-- FEATURES -->
-<div class="features" id="features">
 
-    <h2>Features</h2>
+<section class="features" id="features">
+
+    <div class="section-title">
+        <span>OUR FEATURES</span>
+
+        <h2>Everything You Need For Career Growth</h2>
+
+        <p>
+            Improve your resume, understand your skills
+            and build a clear path toward your career goal.
+        </p>
+    </div>
 
     <div class="feature-box">
 
         <div class="feature-card">
+            <div class="feature-icon">📄</div>
+            <h3>AI Resume Analyzer</h3>
+            <p>Upload your resume and receive AI-powered feedback in seconds.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📊</div>
             <h3>ATS Score</h3>
-            <p>Know how ATS evaluates your resume.</p>
+            <p>Understand how well your resume performs for ATS screening.</p>
         </div>
 
         <div class="feature-card">
-            <h3>Keyword Matching</h3>
-            <p>Find missing keywords required for jobs.</p>
-        </div>
-
-        <div class="feature-card">
-            <h3>AI Suggestions</h3>
-            <p>Get smart recommendations powered by AI.</p>
-        </div>
-
-        <div class="feature-card">
+            <div class="feature-icon">🧠</div>
             <h3>Skill Gap Analysis</h3>
-            <p>Discover missing skills to improve your resume.</p>
+            <p>Identify missing skills and improve your career readiness.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🧭</div>
+            <h3>AI Career Coach</h3>
+            <p>Get a personalized roadmap based on your skills and goals.</p>
         </div>
 
     </div>
 
-</div>
+</section>
 
 
-<!-- ABOUT -->
-<div class="how-it-works" id="about">
+<!-- HOW IT WORKS -->
 
-    <h1>How It Works</h1>
+<section class="how-it-works" id="how-it-works">
+
+    <div class="section-title">
+        <span>HOW IT WORKS</span>
+
+        <h2>Your Career Journey Starts Here</h2>
+    </div>
 
     <div class="steps">
 
         <div class="step">
-            <h3>1. Upload Resume</h3>
-            <p>Upload your resume in PDF format.</p>
+            <div class="step-number">01</div>
+            <h3>Share Your Profile</h3>
+            <p>Upload your resume or enter your skills and career goal.</p>
         </div>
 
         <div class="step">
-            <h3>2. AI Analysis</h3>
-            <p>Gemini AI analyzes your resume and extracts useful insights.</p>
+            <div class="step-number">02</div>
+            <h3>AI Understands You</h3>
+            <p>AI analyzes your experience, skills and career direction.</p>
         </div>
 
         <div class="step">
-            <h3>3. Get Results</h3>
-            <p>Receive ATS score, strengths, weaknesses and improvements instantly.</p>
+            <div class="step-number">03</div>
+            <h3>Get Your Growth Plan</h3>
+            <p>Receive insights, skill suggestions and a personalized roadmap.</p>
         </div>
 
     </div>
 
-</div>
+</section>
+
+
+<!-- CTA -->
+
+<section class="home-cta">
+
+    <h2>Ready to Take the Next Step?</h2>
+
+    <p>Start improving your resume and planning your career with AI.</p>
+
+    <div class="hero-buttons">
+
+        <a href="{% url 'upload_resume' %}">
+            <button class="primary-btn">Analyze My Resume</button>
+        </a>
+
+        <a href="{% url 'career_home' %}">
+            <button class="secondary-btn">Build My Career Roadmap</button>
+        </a>
+
+    </div>
+
+</section>
 
 
 <!-- CONTACT -->
-<div class="contact" id="contact">
-    <h2>Contact Us</h2>
-    
+
+<footer class="contact" id="contact">
+
+    <h2>CareerNova</h2>
+
+    <p class="footer-text">
+        AI-powered resume analysis and personalized career guidance.
+    </p>
+
     <div class="contact-links">
-       
-            <a href="mailto:tiwarianiket004@gmail.com" class="contact-item">
-                <i class="fa-solid fa-envelope"></i>
+
+        <a href="mailto:tiwarianiket004@gmail.com" class="contact-item">
+            <i class="fa-solid fa-envelope"></i>
             <span>tiwarianiket004@gmail.com</span>
-            </a>
-       
-        
-        <a href="https://www.linkedin.com/in/aniket-tiwari-916b74395" target="_blank" class="contact-item">
-            <i class="fa-brands fa-linkedin"></i>
-            <span>https://www.linkedin.com/in/aniket-tiwari-916b74395</span>
         </a>
 
-        <a href="{% url 'upload_resume' %}">
-            <button class="contact-btn">Analyze Your Resume</button>
+        <a href="https://www.linkedin.com/in/aniket-tiwari-916b74395" target="_blank" class="contact-item">
+            <i class="fa-brands fa-linkedin"></i>
+            <span>LinkedIn Profile</span>
         </a>
+
     </div>
-</div>
+
+    <p class="copyright">© 2026 CareerNova. Built with Django and AI.</p>
+
+</footer>
 
 </body>
 </html>
