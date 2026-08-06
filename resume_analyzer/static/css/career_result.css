@@ -568,3 +568,12 @@ body {
     }
 
 }
+.logo{
+    font-size: 28px;
+    font-weight: bold;
+    color: #FACC15;
+}
+
+.logo span{
+    color: #ffffff;
+}

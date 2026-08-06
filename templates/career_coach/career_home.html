@@ -18,7 +18,9 @@
 
     <nav class="career-navbar">
         <div class="container d-flex justify-content-between align-items-center">
-            <a href="{% url 'home' %}" class="career-logo">AI-Powered Coach</a>
+            <div class="logo">
+                Career<span>Nova</span>
+            </div>
 
             <a href="{% url 'home' %}" class="btn btn-warning fw-semibold">Back to Home</a>
         </div>
@@ -108,13 +110,25 @@
         </div>
     </main>
 
-    <script>
-        document.getElementById("careerForm").addEventListener("submit", function () {
-            document.getElementById("generateButton").disabled = true;
-            document.getElementById("buttonText").innerText = "AI is creating your roadmap...";
-        });
-    </script>
+   
+<div id="loading-overlay" class="loading-overlay">
 
+    <div class="loading-box">
+
+        <div class="loader"></div>
+
+        <h2>Generating Career Roadmap...</h2>
+
+        <p>
+            AI is building your personalized career roadmap.
+            This may take a few seconds.
+        </p>
+
+    </div>
+
+</div>
+
+<script src="{% static 'js/career.js' %}"></script>
 </body>
 
 </html>

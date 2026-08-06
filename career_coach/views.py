@@ -247,6 +247,8 @@ Roadmap Rules:
             }
 
         request.session["career_roadmap"] = data.get("roadmap", [])
+
+        request.session.pop("resume_skills", None)
         return render(
             request,
             "career_coach/career_result.html",

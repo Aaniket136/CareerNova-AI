@@ -306,3 +306,13 @@ body{
     border-color: #ffc107;
     transform: translateY(-2px);
 }
+
+.logo{
+    font-size: 28px;
+    font-weight: bold;
+    color: #FACC15;
+}
+
+.logo span{
+    color: #ffffff;
+}

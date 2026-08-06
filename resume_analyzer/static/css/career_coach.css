@@ -14,10 +14,10 @@
         display: flex;
         align-items: center;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        position: sticky;       /* Header ko scroll par fix rakhta hai */
-        top: 0;                 /* Top par zero distance se stick karega */
-        z-index: 1000;          /* Taaki baki content iske peeche se scroll ho */
-        background: #071426;    /* Background color zaroori hai taaki peeche ka content na dikhe */
+        position: sticky;       
+        top: 0;                 
+        z-index: 1000;          
+        background: #071426;    
     }
     .career-logo {
     color: #ffc107;
@@ -231,3 +231,67 @@
             padding-bottom: 14px;
         }
     }
+/* ==========================
+        LOADING SCREEN
+========================== */
+
+.loading-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(15,23,42,.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loading-box{
+    background:#1E293B;
+    padding:40px;
+    width:360px;
+    border-radius:16px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+
+.loading-box h2{
+    color:#FACC15;
+    margin:25px 0 10px;
+}
+
+.loading-box p{
+    color:#CBD5E1;
+    margin:0;
+    line-height:24px;
+}
+
+.loader{
+    width:60px;
+    height:60px;
+    border:6px solid #334155;
+    border-top:6px solid #FACC15;
+    border-radius:50%;
+    margin:auto;
+    animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+.logo{
+    font-size: 28px;
+    font-weight: bold;
+    color: #FACC15;
+}
+
+.logo span{
+    color: #ffffff;
+}
