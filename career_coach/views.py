@@ -256,11 +256,18 @@ Roadmap Rules:
         )
 
 
-    return render(
-        request,
-        "career_coach/career_home.html"
+    resume_skills = request.session.get(
+    "resume_skills",
+    []
     )
 
+    return render(
+        request,
+        "career_coach/career_home.html",
+        {
+            "resume_skills": ", ".join(resume_skills)
+        }
+    )
 def roadmap_detail(request):
 
     roadmap = request.session.get(

@@ -1,27 +1,35 @@
 import os
 import json
 import time
+
 from dotenv import load_dotenv
 import PyPDF2
+
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
+
 from google import genai
 from google.genai import errors
 
+
 load_dotenv()
 
-client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
+client = genai.Client(
+    api_key=os.getenv("GOOGLE_API_KEY")
+)
 
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, "home.html")
 
 
 def upload_resume(request):
+
     data = None
     text = ""
 
     if request.method == "POST":
+
         file = request.FILES.get("resume")
 
         if file:
@@ -30,57 +38,88 @@ def upload_resume(request):
             filename = fs.save(file.name, file)
             file_path = fs.path(filename)
 
-            # ---------------- PDF TO TEXT ---------------- #
+            #  PDF TO TEXT 
 
             with open(file_path, "rb") as f:
+
                 reader = PyPDF2.PdfReader(f)
 
                 for page in reader.pages:
+
                     page_text = page.extract_text()
+
                     if page_text:
                         text += page_text
 
-        
-            if not text.strip():
-                os.remove(file_path)
-                return render(request, "upload_resume.html", {
-                    "message": "Unable to extract text from the uploaded PDF."
-                })
 
+            # EMPTY TEXT CHECK
+
+            if not text.strip():
+
+                if os.path.exists(file_path):
+                    os.remove(file_path)
+
+                return render(
+                    request,
+                    "upload_resume.html",
+                    {
+                        "message": "Unable to extract text from the uploaded PDF."
+                    }
+                )
+
+
+            # AI PROMPT 
 
             prompt = f"""
-            You are an ATS Resume Analyzer.
+You are an ATS Resume Analyzer.
 
-            Return ONLY valid JSON.
+Analyze the resume and return ONLY valid JSON.
 
-            Format:
+Do not return markdown.
+Do not use ```json.
+Do not add any text before or after the JSON.
 
-            {{
-                "ats_score": 0,
-                "strengths": [
-                    "point"
-                ],
-                "weaknesses": [
-                    "point"
-                ],
-                "improvements": [
-                    "point"
-                ]
-            }}
+Use exactly this format:
 
-            Rules:
-            - Do NOT return markdown.
-            - Do NOT use ```json
-            - Return only JSON.
-            - ATS score must be between 0 and 100.
-            - Keep every point short (maximum one line).
+{{
+    "ats_score": 0,
 
-            Resume:
+    "strengths": [
+        "point"
+    ],
 
-            {text}
-            """
+    "weaknesses": [
+        "point"
+    ],
 
-   
+    "improvements": [
+        "point"
+    ],
+
+    "skills": [
+        "Python",
+        "Django"
+    ]
+}}
+
+Rules:
+
+- ATS score must be between 0 and 100.
+- Give concise and practical strengths.
+- Give concise and practical weaknesses.
+- Give actionable resume improvements.
+- Extract technical and professional skills explicitly mentioned in the resume.
+- Do not add skills that are not present in the resume.
+- Return skills as clean individual names.
+- Keep every point short.
+
+Resume:
+
+{text}
+"""
+
+
+            #  AI REQUEST
 
             for _ in range(3):
 
@@ -94,6 +133,7 @@ def upload_resume(request):
                     response_text = response.text.strip()
 
                     if response_text.startswith("```"):
+
                         response_text = (
                             response_text
                             .replace("```json", "")
@@ -102,40 +142,82 @@ def upload_resume(request):
                         )
 
                     data = json.loads(response_text)
+
                     break
+
 
                 except errors.ServerError:
+
                     time.sleep(2)
+
 
                 except json.JSONDecodeError:
+
                     data = {
                         "ats_score": 0,
-                        "strengths": ["AI returned an invalid response."],
+                        "strengths": [
+                            "AI returned an invalid response."
+                        ],
                         "weaknesses": [],
-                        "improvements": ["Please try again."]
+                        "improvements": [
+                            "Please try again."
+                        ],
+                        "skills": []
                     }
+
                     break
 
-                except Exception:
+
+                except Exception as error:
+
+                    print("AI ERROR:", error)
+
                     time.sleep(2)
 
-       
+
+            # FALLBACK 
 
             if not data:
+
                 data = {
                     "ats_score": 0,
-                    "strengths": ["AI service is currently unavailable."],
+                    "strengths": [
+                        "AI service is currently unavailable."
+                    ],
                     "weaknesses": [],
-                    "improvements": ["Please try again after some time."]
+                    "improvements": [
+                        "Please try again after some time."
+                    ],
+                    "skills": []
                 }
 
-        
+
+            # SAVE RESUME SKILLS 
+
+            request.session["resume_skills"] = data.get(
+                "skills",
+                []
+            )
+
+
+            #  DELETE UPLOADED FILE 
 
             if os.path.exists(file_path):
                 os.remove(file_path)
 
-            return render(request, "response.html", {
-                "data": data
-            })
 
-    return render(request, "upload_resume.html")
+            # SHOW RESPONSE 
+
+            return render(
+                request,
+                "response.html",
+                {
+                    "data": data
+                }
+            )
+
+
+    return render(
+        request,
+        "upload_resume.html"
+    )
