@@ -295,3 +295,14 @@
 .logo span{
     color: #ffffff;
 }
+
+.error-message {
+    background: #450a0a;
+    color: #fca5a5;
+    border: 1px solid #ef4444;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 14px;
+}

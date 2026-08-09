@@ -44,6 +44,11 @@
                         </div>
 
                         <div class="career-card-body">
+                            {% if message %}
+                                <div class="error-message">
+                                    {{ message }}
+                                </div>
+                            {% endif %}
 
                             <form method="POST" id="careerForm">
                                 {% csrf_token %}

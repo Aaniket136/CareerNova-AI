@@ -1,12 +1,10 @@
 import os
 import json
 import time
-
 from dotenv import load_dotenv
 from django.shortcuts import render
 from google import genai
 from google.genai import errors
-
 
 load_dotenv()
 
@@ -16,14 +14,20 @@ client = genai.Client(
 
 
 def career_home(request):
-
     if request.method == "POST":
+        education = request.POST.get("education", "").strip()
+        skills = request.POST.get("skills", "").strip()
+        target_role = request.POST.get("target_role", "").strip()
+        current_level = request.POST.get("current_level", "").strip()
+        timeline = request.POST.get("timeline", "").strip()
 
-        education = request.POST.get("education")
-        skills = request.POST.get("skills")
-        target_role = request.POST.get("target_role")
-        current_level = request.POST.get("current_level")
-        timeline = request.POST.get("timeline")
+        if not education or not skills or not target_role or not current_level or not timeline:
+            return render(request, "career_coach/career_home.html", {
+                "message": "Please fill in all the required fields.",
+                "resume_skills": ", ".join(
+                    request.session.get("resume_skills", [])
+                )
+            })
 
         prompt = f"""
 You are an expert AI Career Coach.
@@ -33,74 +37,56 @@ Create a practical and personalized career development plan.
 User Details:
 
 Education: {education}
-
 Current Skills: {skills}
-
 Target Career Role: {target_role}
-
 Current Level: {current_level}
-
 Goal Timeline: {timeline}
-
 
 Return ONLY valid JSON.
 
 Do not return markdown.
-
 Do not use ```json.
-
 Do not add any text before or after the JSON.
 
 Use exactly this structure:
 
 {{
     "career_readiness_score": 0,
-
     "career_summary": "",
-
     "strengths": [
         ""
     ],
-
     "skill_gaps": [
         ""
     ],
-
     "priority_skills": [
         ""
     ],
-
     "roadmap": [
-    {{
-        "phase": "",
-        "duration": "",
-        "goal": "",
-
-        "topics": [
-            {{
-                "title": "",
-
-                "learn": [
-                    ""
-                ],
-
-                "practice": [
-                    ""
-                ],
-
-                "outcome": ""
-            }}
-        ]
-    }}
-],
-
+        {{
+            "phase": "",
+            "duration": "",
+            "goal": "",
+            "topics": [
+                {{
+                    "title": "",
+                    "learn": [
+                        ""
+                    ],
+                    "practice": [
+                        ""
+                    ],
+                    "outcome": ""
+                }}
+            ]
+        }}
+    ],
     "weekly_plan": [
         {{
             "day": "",
             "task": ""
         }}
     ],
-
     "recommended_projects": [
         {{
             "name": "",
@@ -110,15 +96,12 @@ Use exactly this structure:
             ]
         }}
     ],
-
     "interview_preparation": [
         ""
     ],
-
     "portfolio_suggestions": [
         ""
     ],
-
     "expected_outcome": ""
 }}
 
@@ -160,18 +143,15 @@ Roadmap Rules:
         data = None
 
         for _ in range(3):
-
             try:
-
                 response = client.models.generate_content(
-                model="gemini-3.5-flash-lite",
-                contents=prompt
+                    model="gemini-3.5-flash-lite",
+                    contents=prompt
                 )
 
                 response_text = response.text.strip()
 
                 if response_text.startswith("```"):
-
                     response_text = (
                         response_text
                         .replace("```json", "")
@@ -180,15 +160,12 @@ Roadmap Rules:
                     )
 
                 data = json.loads(response_text)
-
                 break
 
             except errors.ServerError:
-
                 time.sleep(2)
 
             except json.JSONDecodeError:
-
                 data = {
                     "career_readiness_score": 0,
                     "career_summary": "AI returned an invalid response.",
@@ -202,15 +179,12 @@ Roadmap Rules:
                     "portfolio_suggestions": [],
                     "expected_outcome": "Please try again."
                 }
-
                 break
 
             except Exception as e:
-
                 print("AI ERROR:", e)
 
                 if "429" in str(e):
-
                     data = {
                         "career_readiness_score": 0,
                         "career_summary": "AI request limit reached. Please try again after a minute.",
@@ -224,14 +198,11 @@ Roadmap Rules:
                         "portfolio_suggestions": [],
                         "expected_outcome": "Please wait for a minute and try again."
                     }
-
                     break
 
                 time.sleep(2)
 
-
         if not data:
-
             data = {
                 "career_readiness_score": 0,
                 "career_summary": "AI service is currently unavailable.",
@@ -247,8 +218,8 @@ Roadmap Rules:
             }
 
         request.session["career_roadmap"] = data.get("roadmap", [])
-
         request.session.pop("resume_skills", None)
+
         return render(
             request,
             "career_coach/career_result.html",
@@ -257,11 +228,11 @@ Roadmap Rules:
             }
         )
 
+    resume_skills = []
 
-    resume_skills = request.session.get(
-    "resume_skills",
-    []
-    )
+    if request.session.get("from_resume"):
+        resume_skills = request.session.get("resume_skills", [])
+        request.session.pop("from_resume", None)
 
     return render(
         request,
@@ -270,12 +241,10 @@ Roadmap Rules:
             "resume_skills": ", ".join(resume_skills)
         }
     )
-def roadmap_detail(request):
 
-    roadmap = request.session.get(
-        "career_roadmap",
-        []
-    )
+
+def roadmap_detail(request):
+    roadmap = request.session.get("career_roadmap", [])
 
     return render(
         request,

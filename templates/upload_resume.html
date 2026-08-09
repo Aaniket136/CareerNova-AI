@@ -33,6 +33,12 @@
 
         <p>Get an AI-powered ATS score, resume feedback and improvement suggestions.</p>
 
+        {% if message %}
+            <div class="error-message">
+                {{ message }}
+            </div>
+        {% endif %}
+
         <form method="POST" enctype="multipart/form-data">
 
             {% csrf_token %}

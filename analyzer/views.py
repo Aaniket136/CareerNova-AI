@@ -4,13 +4,10 @@ import time
 
 from dotenv import load_dotenv
 import PyPDF2
-
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
-
 from google import genai
 from google.genai import errors
-
 
 load_dotenv()
 
@@ -18,59 +15,58 @@ client = genai.Client(
     api_key=os.getenv("GOOGLE_API_KEY")
 )
 
-
 def home(request):
     return render(request, "home.html")
 
-
 def upload_resume(request):
-
     data = None
     text = ""
 
     if request.method == "POST":
-
         file = request.FILES.get("resume")
 
-        if file:
+        # FILE VALIDATION
+        if not file:
+            return render(request, "upload_resume.html", {
+                "message": "Please select a resume file."
+            })
 
-            fs = FileSystemStorage()
-            filename = fs.save(file.name, file)
-            file_path = fs.path(filename)
+        if not file.name.lower().endswith(".pdf"):
+            return render(request, "upload_resume.html", {
+                "message": "Only PDF files are supported."
+            })
 
-            #  PDF TO TEXT 
+        if file.size > 5 * 1024 * 1024:
+            return render(request, "upload_resume.html", {
+                "message": "File size must be less than 5 MB."
+            })
 
-            with open(file_path, "rb") as f:
+        # SAVE FILE
+        fs = FileSystemStorage()
+        filename = fs.save(file.name, file)
+        file_path = fs.path(filename)
 
-                reader = PyPDF2.PdfReader(f)
+        # PDF TO TEXT
+        with open(file_path, "rb") as f:
+            reader = PyPDF2.PdfReader(f)
 
-                for page in reader.pages:
+            for page in reader.pages:
+                page_text = page.extract_text()
 
-                    page_text = page.extract_text()
+                if page_text:
+                    text += page_text
 
-                    if page_text:
-                        text += page_text
+        # EMPTY TEXT CHECK
+        if not text.strip():
+            if os.path.exists(file_path):
+                os.remove(file_path)
 
+            return render(request, "upload_resume.html", {
+                "message": "Unable to extract text from the uploaded PDF."
+            })
 
-            # EMPTY TEXT CHECK
-
-            if not text.strip():
-
-                if os.path.exists(file_path):
-                    os.remove(file_path)
-
-                return render(
-                    request,
-                    "upload_resume.html",
-                    {
-                        "message": "Unable to extract text from the uploaded PDF."
-                    }
-                )
-
-
-            # AI PROMPT 
-
-            prompt = f"""
+        # AI PROMPT
+        prompt = f"""
 You are an ATS Resume Analyzer.
 
 Analyze the resume and return ONLY valid JSON.
@@ -83,19 +79,15 @@ Use exactly this format:
 
 {{
     "ats_score": 0,
-
     "strengths": [
         "point"
     ],
-
     "weaknesses": [
         "point"
     ],
-
     "improvements": [
         "point"
     ],
-
     "skills": [
         "Python",
         "Django"
@@ -103,7 +95,6 @@ Use exactly this format:
 }}
 
 Rules:
-
 - ATS score must be between 0 and 100.
 - Give concise and practical strengths.
 - Give concise and practical weaknesses.
@@ -118,106 +109,65 @@ Resume:
 {text}
 """
 
+        # AI REQUEST
+        for _ in range(3):
+            try:
+                response = client.models.generate_content(
+                    model="gemini-2.5-flash",
+                    contents=prompt
+                )
 
-            #  AI REQUEST
+                response_text = response.text.strip()
 
-            for _ in range(3):
-
-                try:
-
-                    response = client.models.generate_content(
-                        model="gemini-2.5-flash",
-                        contents=prompt
+                if response_text.startswith("```"):
+                    response_text = (
+                        response_text
+                        .replace("```json", "")
+                        .replace("```", "")
+                        .strip()
                     )
 
-                    response_text = response.text.strip()
+                data = json.loads(response_text)
+                break
 
-                    if response_text.startswith("```"):
+            except errors.ServerError:
+                time.sleep(2)
 
-                        response_text = (
-                            response_text
-                            .replace("```json", "")
-                            .replace("```", "")
-                            .strip()
-                        )
-
-                    data = json.loads(response_text)
-
-                    break
-
-
-                except errors.ServerError:
-
-                    time.sleep(2)
-
-
-                except json.JSONDecodeError:
-
-                    data = {
-                        "ats_score": 0,
-                        "strengths": [
-                            "AI returned an invalid response."
-                        ],
-                        "weaknesses": [],
-                        "improvements": [
-                            "Please try again."
-                        ],
-                        "skills": []
-                    }
-
-                    break
-
-
-                except Exception as error:
-
-                    print("AI ERROR:", error)
-
-                    time.sleep(2)
-
-
-            # FALLBACK 
-
-            if not data:
-
+            except json.JSONDecodeError:
                 data = {
                     "ats_score": 0,
-                    "strengths": [
-                        "AI service is currently unavailable."
-                    ],
+                    "strengths": ["AI returned an invalid response."],
                     "weaknesses": [],
-                    "improvements": [
-                        "Please try again after some time."
-                    ],
+                    "improvements": ["Please try again."],
                     "skills": []
                 }
+                break
 
+            except Exception as error:
+                print("AI ERROR:", error)
+                time.sleep(2)
 
-            # SAVE RESUME SKILLS 
+        # FALLBACK
+        if not data:
+            data = {
+                "ats_score": 0,
+                "strengths": ["AI service is currently unavailable."],
+                "weaknesses": [],
+                "improvements": ["Please try again after some time."],
+                "skills": []
+            }
 
-            request.session["resume_skills"] = data.get(
-                "skills",
-                []
-            )
+        # SAVE RESUME SKILLS
+        request.session["resume_skills"] = data.get("skills", [])
+        request.session["from_resume"] = True
 
+        # DELETE UPLOADED FILE
+        if os.path.exists(file_path):
+            os.remove(file_path)
 
-            #  DELETE UPLOADED FILE 
+        # SHOW RESPONSE
+        return render(request, "response.html", {
+            "data": data
+        })
 
-            if os.path.exists(file_path):
-                os.remove(file_path)
-
-
-            # SHOW RESPONSE 
-
-            return render(
-                request,
-                "response.html",
-                {
-                    "data": data
-                }
-            )
-
-
-    return render(
-        request,
-        "upload_resume.html"
-    )
+    return render(request, "upload_resume.html")
