@@ -230,9 +230,8 @@ Roadmap Rules:
 
     resume_skills = []
 
-    if request.session.get("from_resume"):
+    if request.GET.get("from_resume") == "1":
         resume_skills = request.session.get("resume_skills", [])
-        request.session.pop("from_resume", None)
 
     return render(
         request,

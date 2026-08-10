@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'analyzer',
     'career_coach',
+    'interview_coach',
 ]
 
 MIDDLEWARE = [

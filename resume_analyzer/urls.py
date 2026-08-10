@@ -25,4 +25,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('analyzer.urls')),
     path('career_coach/', include('career_coach.urls')),
+    path('interview/', include('interview_coach.urls')),
 ]+static(settings.MEDIA_URL,document_root =settings.MEDIA_ROOT)

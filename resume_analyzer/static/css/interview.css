@@ -1,0 +1,134 @@
+body {
+    margin: 0;
+    background: #071426;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+.career-navbar {
+    height: 72px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #071426;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.logo span {
+    color: #ffc107;
+}
+
+.interview-container {
+    max-width: 850px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.interview-card {
+    background: #0d1d32;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 35px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    color: #9aa8b8;
+    font-size: 14px;
+}
+
+.question-type {
+    color: #ffc107;
+    background: rgba(255, 193, 7, 0.08);
+    border: 1px solid rgba(255, 193, 7, 0.2);
+    border-radius: 20px;
+    padding: 6px 14px;
+}
+
+.question-content {
+    margin-bottom: 35px;
+}
+
+.question-content h2 {
+    color: #ffffff;
+    font-size: 25px;
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+.form-label {
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.answer-box {
+    width: 100%;
+    min-height: 180px;
+    resize: vertical;
+    padding: 15px;
+    background: #08172a;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.answer-box:focus {
+    background: #08172a;
+    color: #ffffff;
+    border-color: #ffc107;
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.12);
+    outline: none;
+}
+
+.answer-box::placeholder {
+    color: #718096;
+}
+
+.interview-btn {
+    padding: 11px 30px;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .career-navbar {
+        padding: 0 20px;
+    }
+
+    .interview-container {
+        margin: 40px auto;
+    }
+
+    .interview-card {
+        padding: 25px 20px;
+    }
+
+    .question-header {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .question-content h2 {
+        font-size: 21px;
+    }
+
+    .answer-box {
+        min-height: 150px;
+    }
+}
