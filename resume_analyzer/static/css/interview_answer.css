@@ -1,0 +1,425 @@
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:#071426;
+    color:#fff;
+    font-family:Arial,sans-serif;
+    overflow-x:hidden;
+}
+
+.career-navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:72px;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#071426;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    z-index:1000;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:700;
+    color:#fff;
+}
+
+.logo span{
+    color:#ffc107;
+}
+
+.answers-page{
+    min-height:100vh;
+    padding:120px 20px 50px;
+}
+
+.answers-card{
+    width:100%;
+    max-width:900px;
+    margin:0 auto;
+    padding:32px;
+    background:#0d1d32;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:16px;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+.answers-header{
+    text-align:center;
+    margin-bottom:28px;
+}
+
+.answers-header h1{
+    color:#fff;
+    font-size:30px;
+    margin:0 0 8px;
+}
+
+.answers-header p{
+    color:#9aa8b8;
+    margin:0;
+}
+
+/* Accordion */
+
+.custom-item{
+    background:#08172a;
+    border:none;
+    border-radius:12px;
+    overflow:hidden;
+    margin-bottom:14px;
+}
+
+.custom-btn{
+    background:#08172a !important;
+    color:#fff !important;
+    box-shadow:none !important;
+    padding:18px 20px;
+}
+
+.custom-btn::after{
+    filter:invert(1);
+}
+
+.custom-btn:focus{
+    box-shadow:none !important;
+}
+
+.custom-btn:not(.collapsed){
+    background:#0a1b30 !important;
+    color:#fff !important;
+}
+
+.btn-content{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-right:10px;
+}
+
+.left{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    min-width:0;
+}
+
+.q-number{
+    width:42px;
+    height:42px;
+    flex-shrink:0;
+    border-radius:50%;
+    background:rgba(255,193,7,.12);
+    color:#ffc107;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+}
+
+.q-title{
+    color:#fff;
+    font-weight:600;
+    margin-bottom:4px;
+    line-height:1.4;
+}
+
+.q-type{
+    color:#8ea3b7;
+    font-size:13px;
+}
+
+.score{
+    background:#ffc107;
+    color:#071426;
+    font-weight:700;
+    padding:7px 14px;
+    border-radius:8px;
+    min-width:70px;
+    text-align:center;
+}
+
+/* Expanded content */
+
+.accordion-body{
+    background:#0d1d32;
+    padding:22px;
+    border-top:1px solid rgba(255,255,255,.05);
+}
+
+.section{
+    padding:15px 18px;
+    border-radius:10px;
+    margin-bottom:14px;
+}
+
+.section:last-child{
+    margin-bottom:0;
+}
+
+/* Question */
+
+.question{
+    background:rgba(255,193,7,.08);
+    border-left:3px solid #ffc107;
+}
+
+.question h6{
+    color:#ffc107 !important;
+}
+
+/* User Answer */
+
+.answer{
+    background:rgba(32,201,151,.08);
+    border-left:3px solid #20c997;
+}
+
+.answer h6{
+    color:#20c997 !important;
+}
+
+/* Ideal Answer */
+
+.ideal{
+    background:rgba(111,156,255,.08);
+    border-left:3px solid #6f9cff;
+}
+
+.ideal h6{
+    color:#6f9cff !important;
+}
+
+/* AI Feedback */
+
+.feedback{
+    background:rgba(181,108,255,.08);
+    border-left:3px solid #b56cff;
+}
+
+.feedback h6{
+    color:#b56cff !important;
+}
+
+/* Strength */
+
+.strength{
+    background:rgba(32,201,151,.08);
+    border-left:3px solid #20c997;
+}
+
+.strength h6{
+    color:#20c997 !important;
+}
+
+/* Improvement */
+
+.improve{
+    background:rgba(255,159,67,.08);
+    border-left:3px solid #ff9f43;
+}
+
+.improve h6{
+    color:#ff9f43 !important;
+}
+
+/* Section headings */
+
+.section h6{
+    margin:0 0 8px;
+    font-size:14px;
+    font-weight:700;
+}
+
+/* Section text */
+
+.section p{
+    margin:0;
+    color:#d2dde8 !important;
+    line-height:1.65;
+    font-size:14px;
+    word-wrap:break-word;
+}
+
+/* AI Feedback header */
+
+.feedback-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:8px;
+}
+
+.feedback-head h6{
+    margin:0;
+}
+
+.badge-score{
+    background:#ffc107;
+    color:#071426;
+    padding:5px 12px;
+    border-radius:6px;
+    font-size:13px;
+    font-weight:700;
+}
+
+/* Footer */
+
+.footer-btn{
+    text-align:center;
+    margin-top:24px;
+}
+
+.footer-btn .btn{
+    padding:10px 26px;
+    font-weight:600;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .career-navbar{
+        padding:0 20px;
+        height:68px;
+    }
+
+    .logo{
+        font-size:22px;
+    }
+
+    .answers-page{
+        padding:100px 15px 35px;
+    }
+
+    .answers-card{
+        padding:22px 16px;
+        border-radius:14px;
+    }
+
+    .answers-header h1{
+        font-size:26px;
+    }
+
+    .answers-header p{
+        font-size:14px;
+    }
+
+    .custom-btn{
+        padding:16px 15px;
+    }
+
+    .btn-content{
+        padding-right:5px;
+    }
+
+    .left{
+        gap:12px;
+        max-width:80%;
+    }
+
+    .q-number{
+        width:38px;
+        height:38px;
+        font-size:13px;
+    }
+
+    .q-title{
+        font-size:14px;
+    }
+
+    .q-type{
+        font-size:12px;
+    }
+
+    .score{
+        min-width:60px;
+        padding:6px 9px;
+        font-size:12px;
+    }
+
+    .accordion-body{
+        padding:16px;
+    }
+
+    .section{
+        padding:14px;
+    }
+
+}
+
+/* Small mobile */
+
+@media(max-width:480px){
+
+    .career-navbar{
+        padding:0 15px;
+    }
+
+    .career-navbar .btn{
+        font-size:12px;
+        padding:7px 10px;
+    }
+
+    .answers-page{
+        padding:95px 10px 30px;
+    }
+
+    .answers-card{
+        padding:18px 12px;
+    }
+
+    .answers-header h1{
+        font-size:23px;
+    }
+
+    .btn-content{
+        flex-wrap:wrap;
+        gap:10px;
+    }
+
+    .left{
+        max-width:100%;
+    }
+
+    .score{
+        margin-left:50px;
+    }
+}
+.question-title{
+    color:#ffc107 !important;
+}
+
+.answer-title{
+    color:#20c997 !important;
+}
+
+.ideal-title{
+    color:#6f9cff !important;
+}
+
+.feedback-title{
+    color:#b56cff !important;
+}
+
+.strength-title{
+    color:#20c997 !important;
+}
+
+.improve-title{
+    color:#ff9f43 !important;
+}
+.section h6{
+    margin:0 0 8px 0 !important;
+    font-size:14px !important;
+    font-weight:700 !important;
+    background:transparent !important;
+}

@@ -1,134 +1,754 @@
-body {
-    margin: 0;
-    background: #071426;
-    color: #ffffff;
-    font-family: Arial, sans-serif;
+* {
+    box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #06101f;
+    color: #ffffff;
+    font-family: Inter, Arial, sans-serif;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
 .career-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    width: 100%;
     height: 72px;
-    padding: 0 6%;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+
+    padding: 0 3.8%;
+
     background: #071426;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .logo {
-    font-size: 25px;
-    font-weight: 700;
-    color: #ffffff;
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: -1px;
 }
 
 .logo span {
     color: #ffc107;
 }
 
-.interview-container {
-    max-width: 850px;
-    margin: 60px auto;
-    padding: 0 20px;
-}
 
-.interview-card {
-    background: #0d1d32;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
-    padding: 35px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-}
+/* AI STATUS */
 
-.question-header {
+.ai-status {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
-    color: #9aa8b8;
+    gap: 10px;
+
+    padding: 8px 17px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 25px;
+
+    color: #cbd5e1;
+
     font-size: 14px;
 }
 
-.question-type {
+.status-dot {
+    width: 9px;
+    height: 9px;
+
+    background: #22c55e;
+
+    border-radius: 50%;
+
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.7);
+}
+
+
+/* EXIT */
+
+.exit-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 17px;
+
     color: #ffc107;
-    background: rgba(255, 193, 7, 0.08);
-    border: 1px solid rgba(255, 193, 7, 0.2);
+    text-decoration: none;
+
+    border: 1px solid #ffc107;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: 0.2s;
+}
+
+.exit-btn:hover {
+    background: #ffc107;
+    color: #111827;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.interview-container {
+    width: min(1095px, 92%);
+
+    margin: 0 auto;
+
+    padding-top: 117px;
+    padding-bottom: 25px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.interview-card {
+    background: #0d1b2d;
+
+    border: 1px solid #1e3046;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.28);
+}
+
+
+/* =========================
+   QUESTION HEADER
+========================= */
+
+.question-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 28px 46px 18px;
+}
+
+.question-count {
+    color: #9aacbf;
+
+    font-size: 15px;
+}
+
+.question-count strong {
+    color: #ffc107;
+    font-size: 16px;
+}
+
+.question-count span {
+    color: #9aacbf;
+}
+
+
+/* QUESTION TYPE */
+
+.question-type {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 7px 15px;
+
+    color: #ffc107;
+
+    background: rgba(255, 193, 7, 0.07);
+
+    border: 1px solid rgba(255, 193, 7, 0.35);
+
     border-radius: 20px;
-    padding: 6px 14px;
+
+    font-size: 12px;
+    font-weight: 700;
 }
 
-.question-content {
-    margin-bottom: 35px;
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-area {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    padding: 0 46px;
 }
 
-.question-content h2 {
-    color: #ffffff;
+.progress-bar {
+    flex: 1;
+
+    height: 6px;
+
+    background: #1b2b3f;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+
+    background: #ffc107;
+
+    border-radius: 10px;
+
+    transition: width 0.4s ease;
+}
+
+.progress-percent {
+    min-width: 40px;
+
+    color: #22c55e;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.question-message {
+    padding: 18px 46px 17px;
+
+    color: #b8c4d4;
+
+    font-size: 14px;
+}
+
+.question-message:first-letter {
+    color: #ffc107;
+}
+
+
+/* =========================
+   DIVIDER
+========================= */
+
+.divider {
+    height: 1px;
+
+    margin: 0 46px;
+
+    background: rgba(255, 255, 255, 0.09);
+}
+
+
+/* =========================
+   AI INTERVIEWER
+========================= */
+
+.ai-interviewer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 22px 46px 8px;
+}
+
+.ai-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #273657;
+
+    border-radius: 50%;
+
     font-size: 25px;
-    line-height: 1.5;
-    font-weight: 600;
 }
 
-.form-label {
-    color: #ffffff;
-    font-weight: 600;
-    margin-bottom: 8px;
+.ai-interviewer h3 {
+    margin: 0 0 4px;
+
+    color: #9187ff;
+
+    font-size: 17px;
 }
 
-.answer-box {
+.ai-interviewer p {
+    margin: 0;
+
+    color: #9eabbc;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   QUESTION
+========================= */
+
+.question-section {
+    padding: 12px 46px 28px;
+}
+
+.question-section h1 {
+    max-width: 970px;
+
+    margin: 0;
+
+    color: #f8fafc;
+
+    font-size: 29px;
+
+    line-height: 1.48;
+
+    font-weight: 700;
+}
+
+
+/* =========================
+   ANSWER
+========================= */
+
+form {
+    padding: 0 46px;
+}
+
+.answer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 9px;
+}
+
+.answer-header label {
+    color: #f1f5f9;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.answer-header span {
+    color: #9aa8ba;
+
+    font-size: 12px;
+}
+
+#answer {
     width: 100%;
-    min-height: 180px;
+
+    height: 175px;
+
+    padding: 17px;
+
     resize: vertical;
-    padding: 15px;
-    background: #08172a;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 8px;
+
+    background: #071426;
+
+    border: 1px solid #2c3f58;
+
+    border-radius: 9px;
+
     color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
     line-height: 1.6;
-}
 
-.answer-box:focus {
-    background: #08172a;
-    color: #ffffff;
-    border-color: #ffc107;
-    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.12);
     outline: none;
+
+    transition: 0.2s;
 }
 
-.answer-box::placeholder {
+#answer::placeholder {
+    color: #56677d;
+}
+
+#answer:focus {
+    border-color: #776dff;
+
+    box-shadow: 0 0 0 3px rgba(119, 109, 255, 0.1);
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error-message {
+    margin-top: 8px;
+
+    color: #ff8b8b;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.answer-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 23px -46px 0;
+
+    padding: 22px 46px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+/* TIP */
+
+.tip {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.tip-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #18283c;
+
+    border-radius: 50%;
+
+    font-size: 19px;
+}
+
+.tip strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #f1f5f9;
+
+    font-size: 13px;
+}
+
+.tip span {
+    display: block;
+
+    color: #8998aa;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.submit-btn {
+    min-width: 280px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+
+    padding: 15px 25px;
+
+    background: #ffc107;
+
+    border: none;
+    border-radius: 9px;
+
+    color: #111827;
+
+    font-size: 16px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.submit-btn span {
+    font-size: 23px;
+}
+
+.submit-btn:hover {
+    background: #ffca2c;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 8px 20px rgba(255, 193, 7, 0.15);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================
+   SECURITY
+========================= */
+
+.security-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    margin-top: 20px;
+
     color: #718096;
+
+    font-size: 12px;
 }
 
-.interview-btn {
-    padding: 11px 30px;
-    font-weight: 600;
-    border-radius: 8px;
+.security-note span {
+    color: #22c55e;
 }
 
-@media (max-width: 768px) {
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
     .career-navbar {
         padding: 0 20px;
     }
 
-    .interview-container {
-        margin: 40px auto;
+    .ai-status {
+        display: none;
     }
 
-    .interview-card {
-        padding: 25px 20px;
+    .interview-container {
+        width: 94%;
+
+        padding-top: 95px;
+    }
+
+    .question-header,
+    .ai-interviewer,
+    .question-section {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .progress-area {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .question-message {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .divider {
+        margin: 0 25px;
+    }
+
+    form {
+        padding: 0 25px;
+    }
+
+    .answer-footer {
+        margin-left: -25px;
+        margin-right: -25px;
+
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .question-section h1 {
+        font-size: 23px;
+    }
+
+    .answer-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+    }
+
+    .submit-btn {
+        width: 100%;
+    }
+
+    .tip {
+        align-items: flex-start;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .exit-btn {
+        padding: 8px 11px;
+
+        font-size: 12px;
     }
 
     .question-header {
-        align-items: flex-start;
-        gap: 15px;
+        padding-top: 20px;
     }
 
-    .question-content h2 {
-        font-size: 21px;
+    .question-section h1 {
+        font-size: 20px;
     }
 
-    .answer-box {
-        min-height: 150px;
+    #answer {
+        height: 160px;
+    }
+
+    .question-type {
+        padding: 6px 10px;
+    }
+}
+/* =========================
+   INTERVIEW LOADING
+========================= */
+
+.interview-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(4, 10, 20, 0.88);
+    backdrop-filter: blur(8px);
+}
+
+.loader-card {
+    width: min(420px, 90%);
+
+    padding: 38px 32px;
+
+    text-align: center;
+
+    background: #0d1b2d;
+
+    border: 1px solid #263952;
+    border-radius: 16px;
+
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+}
+
+.loader-spinner {
+    width: 48px;
+    height: 48px;
+
+    margin: 0 auto 22px;
+
+    border: 4px solid #263952;
+    border-top-color: #ffc107;
+
+    border-radius: 50%;
+
+    animation: interviewSpin 0.9s linear infinite;
+}
+
+.loader-card h2 {
+    margin: 0 0 9px;
+
+    color: #f8fafc;
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.loader-card p {
+    margin: 0 auto 22px;
+
+    max-width: 320px;
+
+    color: #94a3b8;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.loader-progress {
+    width: 100%;
+    height: 5px;
+
+    margin-bottom: 14px;
+
+    background: #1b2b3f;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.loader-progress-fill {
+    width: 35%;
+    height: 100%;
+
+    background: #ffc107;
+
+    border-radius: 10px;
+
+    animation: loaderProgress 1.5s ease-in-out infinite;
+}
+
+.loader-note {
+    color: #64748b;
+
+    font-size: 11px;
+}
+
+@keyframes interviewSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes loaderProgress {
+    0% {
+        width: 10%;
+    }
+
+    50% {
+        width: 75%;
+    }
+
+    100% {
+        width: 95%;
     }
 }

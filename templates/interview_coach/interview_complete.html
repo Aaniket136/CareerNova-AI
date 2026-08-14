@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/interview_complete.css' %}">
 </head>
 <body>
+
 <nav class="career-navbar">
     <div class="logo">Career<span>Nova</span></div>
     <a href="{% url 'home' %}" class="btn btn-warning fw-semibold">Back to Home</a>
@@ -16,60 +17,86 @@
 
 <main class="result-container">
     <div class="result-card">
+
         <div class="result-icon">✓</div>
+
         <h1>Interview Completed</h1>
-        <p class="result-subtitle">Your AI interview has been completed successfully.</p>
+
+        <p class="result-subtitle">
+            Your AI interview has been completed successfully.
+        </p>
 
         <div class="score-section">
             <div class="score-circle">
-                <span>78</span><small>/100</small>
+                <span>{{ data.overall_score }}</span><small>/100</small>
             </div>
+
             <h3>Overall Interview Score</h3>
         </div>
 
         <div class="result-stats">
+
             <div class="stat-box">
                 <span>Technical</span>
-                <strong>82</strong>
+                <strong>{{ data.technical_score }}</strong>
             </div>
+
             <div class="stat-box">
                 <span>Communication</span>
-                <strong>74</strong>
+                <strong>{{ data.communication_score }}</strong>
             </div>
+
             <div class="stat-box">
                 <span>Confidence</span>
-                <strong>79</strong>
+                <strong>{{ data.confidence_score }}</strong>
             </div>
+
         </div>
 
         <div class="feedback-section">
             <h3>AI Summary</h3>
-            <p>Your interview performance was good. You demonstrated a solid understanding of technical concepts, but some answers could be more structured and detailed.</p>
+
+            <p>
+                {{ data.summary }}
+            </p>
         </div>
 
+        {% if data.strengths %}
         <div class="feedback-section">
             <h3>Strengths</h3>
+
             <ul>
-                <li>Good understanding of technical concepts</li>
-                <li>Clear explanation of projects</li>
-                <li>Good problem-solving approach</li>
+                {% for strength in data.strengths %}
+                <li>{{ strength }}</li>
+                {% endfor %}
             </ul>
         </div>
+        {% endif %}
 
+        {% if data.improvements %}
         <div class="feedback-section">
             <h3>Areas to Improve</h3>
+
             <ul>
-                <li>Give more structured answers</li>
-                <li>Use real-world examples</li>
-                <li>Practice concise communication</li>
+                {% for improvement in data.improvements %}
+                <li>{{ improvement }}</li>
+                {% endfor %}
             </ul>
         </div>
+        {% endif %}
 
         <div class="result-actions">
-            <button class="btn btn-warning" disabled>View My Answers</button>
-            <a href="{% url 'interview_home' %}" class="btn btn-outline-light">Practice Again</a>
+            <a href="{% url 'interview_answers' %}" class="btn btn-warning">
+                View My Answers
+            </a>
+
+            <a href="{% url 'interview_home' %}" class="btn btn-outline-light">
+                Practice Again
+            </a>
         </div>
+
     </div>
 </main>
+
 </body>
 </html>

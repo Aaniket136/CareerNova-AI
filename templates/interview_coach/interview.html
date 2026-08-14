@@ -1,47 +1,239 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interview - CareerNova</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="{% static 'css/interview.css' %}">
 </head>
+
 <body>
 
 <nav class="career-navbar">
-    <div class="logo">Career<span>Nova</span></div>
-    <a href="{% url 'home' %}" class="btn btn-warning fw-semibold">Exit Interview</a>
+
+    <div class="logo">
+        Career<span>Nova</span>
+    </div>
+
+    <div class="ai-status">
+        <span class="status-dot"></span>
+        AI Interview in Progress
+    </div>
+
+    <a href="{% url 'home' %}" class="exit-btn">
+        <span>↪</span>
+        Exit Interview
+    </a>
+
 </nav>
 
+
 <main class="interview-container">
+
     <div class="interview-card">
 
+        <!-- TOP -->
         <div class="question-header">
-            <span>Question {{ question_number }} of {{ total_questions }}</span>
-            <span class="question-type">{{ question.type }}</span>
+
+            <div class="question-count">
+                Question <strong>{{ question_number }}</strong>
+                <span>of {{ total_questions }}</span>
+            </div>
+
+            <div class="question-type">
+                {% if question.type == "Technical" %}
+                    &lt;/&gt;
+                {% elif question.type == "Project" %}
+                    ◈
+                {% elif question.type == "Resume" %}
+                    ▣
+                {% else %}
+                    ✦
+                {% endif %}
+
+                {{ question.type }}
+            </div>
+
         </div>
 
-        <div class="question-content">
-            <h2>{{ question.question }}</h2>
+
+        <!-- PROGRESS -->
+        <div class="progress-area">
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    style="width: {% widthratio question_number total_questions 100 %}%;">
+                </div>
+
+            </div>
+
+            <span class="progress-percent">
+                {% widthratio question_number total_questions 100 %}%
+            </span>
+
         </div>
 
+
+        <!-- SMALL MESSAGE -->
+        <div class="question-message">
+            ✦
+            {% if question_number == total_questions %}
+                You're almost done! Give your best answer.
+            {% else %}
+                Take your time and answer naturally.
+            {% endif %}
+        </div>
+
+
+        <div class="divider"></div>
+
+
+        <!-- AI INTERVIEWER -->
+        <div class="ai-interviewer">
+
+            <div class="ai-icon">
+                🤖
+            </div>
+
+            <div>
+                <h3>AI Interviewer</h3>
+                <p>Please answer the following question</p>
+            </div>
+
+        </div>
+
+
+        <!-- QUESTION -->
+        <div class="question-section">
+
+            <h1>
+                {{ question.question }}
+            </h1>
+
+        </div>
+
+
+        <!-- ANSWER -->
         <form method="POST" action="{% url 'submit_answer' %}">
+
             {% csrf_token %}
 
-            <div class="mb-4">
-                <label for="answer" class="form-label">Your Answer</label>
-                <textarea id="answer" name="answer" class="form-control answer-box" placeholder="Type your answer here..." required></textarea>
+            <div class="answer-header">
+
+                <label for="answer">
+                    Your Answer
+                </label>
+
+                <span id="charCount">
+                    0 / 3000 characters
+                </span>
+
             </div>
 
-            <div class="text-end">
-                <button type="submit" class="btn btn-warning interview-btn">Submit Answer</button>
+            <textarea
+                id="answer"
+                name="answer"
+                maxlength="3000"
+                placeholder="Type your answer here..."
+                required
+            ></textarea>
+
+
+            {% if message %}
+                <div class="error-message">
+                    {{ message }}
+                </div>
+            {% endif %}
+
+
+            <!-- FOOTER -->
+            <div class="answer-footer">
+
+                <div class="tip">
+
+                    <div class="tip-icon">
+                        💡
+                    </div>
+
+                    <div>
+                        <strong>Tip: Structure your answer clearly and be concise.</strong>
+                        <span>Focus on practical and industry-relevant points.</span>
+                    </div>
+
+                </div>
+
+
+                <button type="submit" class="submit-btn">
+
+                    {% if question_number == total_questions %}
+                        Finish Interview
+                    {% else %}
+                        Submit Answer
+                    {% endif %}
+
+                    <span>→</span>
+
+                </button>
+
             </div>
+
         </form>
 
     </div>
+
+
+    <div class="security-note">
+        <span>♢</span>
+        Your answers are secure and confidential.
+    </div>
+
 </main>
+<div class="security-note">
+    <span>♢</span>
+    Your answers are secure and confidential.
+</div>
+
+
+<!-- INTERVIEW LOADING -->
+
+<div id="interviewLoader" class="interview-loader">
+
+    <div class="loader-card">
+
+        <div class="loader-spinner"></div>
+
+        <h2>Analyzing Your Answer</h2>
+
+        <p>
+            CareerNova AI is evaluating your response.
+            Please wait...
+        </p>
+
+        <div class="loader-progress">
+            <div class="loader-progress-fill"></div>
+        </div>
+
+        <span class="loader-note">
+            Please don't refresh the page.
+        </span>
+
+    </div>
+
+</div>
+
+
+<script src="{% static 'js/interview.js' %}"></script>
+
+</body>
+</html>
+
+
+<script src="{% static 'js/interview.js' %}"></script>
 
 </body>
 </html>
