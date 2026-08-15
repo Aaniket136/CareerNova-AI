@@ -450,3 +450,134 @@ a {
     }
 
 }
+/* =========================
+   INTERVIEW COACH CTA
+========================= */
+
+.interview-cta {
+    margin-top: 24px;
+    padding: 28px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+
+    background: linear-gradient(
+        135deg,
+        #101d31,
+        #0d192a
+    );
+
+    border: 1px solid rgba(255, 193, 7, 0.28);
+    border-radius: 14px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.interview-cta > div:first-child {
+    position: relative;
+    padding-left: 62px;
+}
+
+.interview-icon {
+    position: absolute;
+    left: 0;
+    top: 2px;
+
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 193, 7, 0.12);
+
+    border: 1px solid rgba(255, 193, 7, 0.28);
+    border-radius: 12px;
+
+    color: #ffc107;
+
+    font-size: 19px;
+}
+
+.interview-cta h3 {
+    margin: 0 0 7px;
+
+    color: #f8fafc;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.interview-cta p {
+    margin: 0;
+
+    max-width: 600px;
+
+    color: #94a3b8;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.interview-button {
+    flex-shrink: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 12px 20px;
+
+    background: #ffc107;
+
+    color: #111827;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: all 0.2s ease;
+}
+
+.interview-button i {
+    font-size: 13px;
+}
+
+.interview-button:hover {
+    background: #ffca2c;
+
+    color: #111827;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(255, 193, 7, 0.15);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .interview-cta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .interview-cta > div:first-child {
+        width: 100%;
+    }
+
+    .interview-button {
+        width: 100%;
+    }
+
+}

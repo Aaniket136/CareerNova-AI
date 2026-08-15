@@ -2,7 +2,7 @@ import os
 import json
 import time
 from dotenv import load_dotenv
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from google import genai
 from google.genai import errors
 
@@ -218,7 +218,15 @@ Roadmap Rules:
             }
 
         request.session["career_roadmap"] = data.get("roadmap", [])
-        request.session.pop("resume_skills", None)
+
+        request.session["career_interview_data"] = {
+            "education": education,
+            "skills": skills,
+            "target_role": target_role,
+            "current_level": current_level,
+            "timeline": timeline
+        }
+        request.session["career_result"] = data
 
         return render(
             request,
@@ -250,5 +258,20 @@ def roadmap_detail(request):
         "career_coach/roadmap_detail.html",
         {
             "roadmap": roadmap
+        }
+    )
+
+def career_result(request):
+
+    data = request.session.get("career_result")
+
+    if not data:
+        return redirect("career_home")
+
+    return render(
+        request,
+        "career_coach/career_result.html",
+        {
+            "data": data
         }
     )

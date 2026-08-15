@@ -216,6 +216,35 @@
 
             </section>
 
+                        <!-- Interview Preparation -->
+
+            <section class="interview-prep-cta">
+
+                <div class="interview-prep-content">
+                    <div class="interview-prep-icon">🎤</div>
+
+                    <div>
+                        <h3>Ready to Test Your Skills?</h3>
+                        <p>
+                            Take a personalized AI interview based on your
+                            career goal, skills and current level.
+                        </p>
+                    </div>
+
+                </div>
+
+                <a href="{% url 'interview_home' %}?from_career=1"
+                   class="interview-prep-button">
+
+                    Prepare for Interview
+
+                    <span>→</span>
+
+                </a>
+
+            </section>
+
+
             <!-- Actions -->
             <div class="result-actions">
                 <a href="{% url 'career_home' %}" class="btn result-primary-button">Create Another Roadmap</a>

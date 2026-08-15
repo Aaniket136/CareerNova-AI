@@ -1,5 +1,5 @@
 const interviewForm = document.querySelector("form");
-const interviewLoader = document.getElementById("interviewLoader");
+const interviewLoader = document.getElementById("loadingOverlay");
 const answerBox = document.getElementById("answer");
 const charCount = document.getElementById("charCount");
 
@@ -24,18 +24,28 @@ if (interviewForm && interviewLoader) {
 
     interviewForm.addEventListener("submit", function (event) {
 
-        if (!answerBox.value.trim()) {
+        const answer = answerBox ? answerBox.value.trim() : "";
+
+        // Empty answer -> Django/browser validation handle karega
+        if (!answer) {
             return;
         }
 
         const submitButton = interviewForm.querySelector(".submit-btn");
-        const isFinalQuestion = submitButton &&
+
+        if (!submitButton) {
+            return;
+        }
+
+        const isFinalQuestion =
             submitButton.textContent.includes("Finish Interview");
 
+        // Q1-Q7 -> normal submit, NO LOADING
         if (!isFinalQuestion) {
             return;
         }
 
+        // Q8 -> FINAL SUBMISSION
         event.preventDefault();
 
         interviewLoader.style.display = "flex";

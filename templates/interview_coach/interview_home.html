@@ -28,22 +28,34 @@
 
             <div class="mb-4">
                 <label for="target_role" class="form-label">Target Role</label>
-                <input type="text" id="target_role" name="target_role" class="form-control" value="{{ target_role }}" placeholder="e.g. Django Developer" required>
+                <input type="text" id="target_role" name="target_role"class="form-control"value="{% if career_data.target_role %}{{ career_data.target_role }}{% else %}{{ target_role }}{% endif %}"
+                placeholder="e.g. Django Developer"required>
             </div>
 
             <div class="mb-4">
                 <label for="current_level" class="form-label">Current Level</label>
                 <select id="current_level" name="current_level" class="form-select" required>
+
                     <option value="">Select your level</option>
-                    <option value="Fresher" {% if current_level == "Fresher" %}selected{% endif %}>Fresher</option>
-                    <option value="Beginner" {% if current_level == "Beginner" %}selected{% endif %}>Beginner</option>
-                    <option value="Intermediate" {% if current_level == "Intermediate" %}selected{% endif %}>Intermediate</option>
+
+                    <option value="Fresher"{% if career_data.current_level == "Fresher" or current_level == "Fresher" %}selected{% endif %}>
+                        Fresher
+                    </option>
+
+                    <option value="Beginner"{% if career_data.current_level == "Beginner" or current_level == "Beginner" %}selected{% endif %}>
+                        Beginner
+                    </option>
+
+                    <option value="Intermediate"{% if career_data.current_level == "Intermediate" or current_level == "Intermediate" %}selected {% endif %}>
+                        Intermediate
+                    </option>
+
                 </select>
             </div>
 
             <div class="mb-4">
                 <label for="skills" class="form-label">Skills</label>
-                <input type="text" id="skills" name="skills" class="form-control" value="{{ resume_skills }}" placeholder="e.g. Python, Django, MySQL">
+                <input type="text" id="skills" name="skills" class="form-control" value="{% if career_data.skills %}{{ career_data.skills }}{% else %}{{ resume_skills }}{% endif %}" placeholder="e.g. Python, Django, MySQL">
                 <div class="form-text">Your resume skills will be filled automatically when available.</div>
             </div>
 
@@ -106,31 +118,22 @@
 <!-- =========================
      INTERVIEW START LOADER
 ========================= -->
+<div id="loadingOverlay" class="loading-overlay">
 
-<div id="interviewStartLoader" class="interview-start-loader">
+    <div class="loading-card">
 
-    <div class="start-loader-card">
+        <div class="loading-spinner"></div>
 
-        <div class="start-loader-spinner"></div>
-
-        <h2>Preparing Your AI Interview</h2>
+        <h2>Preparing Your Interview...</h2>
 
         <p>
-            CareerNova AI is generating personalized
-            interview questions based on your profile.
+            AI is generating personalized questions for you.
         </p>
-
-        <div class="start-loader-progress">
-            <div class="start-loader-progress-fill"></div>
-        </div>
-
-        <span>
-            This may take a few moments...
-        </span>
 
     </div>
 
 </div>
+
 
 <script src="{% static 'js/interview_coach.js' %}"></script>
 </body>

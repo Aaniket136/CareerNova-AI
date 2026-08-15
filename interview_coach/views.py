@@ -62,10 +62,22 @@ def is_meaningful_answer(answer):
 
 def interview_home(request):
     resume_skills = []
+    career_interview_data = {}
 
-    if request.session.get("from_resume"):
-        resume_skills = request.session.get("resume_skills", [])
+    from_resume = request.GET.get("from_resume") == "1"
+    from_career = request.GET.get("from_career") == "1"
+
+    if from_resume:
+        resume_skills = request.session.get("resume_skills",[])
         request.session.pop("from_resume", None)
+
+    elif from_career:
+
+        career_interview_data = request.session.get("career_interview_data",{})
+
+    else:
+        resume_skills = []
+        career_interview_data = {}
 
     if request.method == "POST":
         target_role = request.POST.get("target_role", "").strip()
@@ -254,7 +266,8 @@ Rules:
         request,
         "interview_coach/interview_home.html",
         {
-            "resume_skills": ", ".join(resume_skills)
+            "resume_skills": ", ".join(resume_skills),
+            "career_data": career_interview_data
         }
     )
 

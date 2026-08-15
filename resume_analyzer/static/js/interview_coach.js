@@ -1,17 +1,15 @@
 const interviewForm = document.querySelector(".interview-card form");
-const interviewStartLoader = document.getElementById("interviewStartLoader");
+const interviewStartLoader = document.getElementById("loadingOverlay");
 const startButton = document.querySelector(".interview-btn");
 
 if (interviewForm && interviewStartLoader) {
 
     interviewForm.addEventListener("submit", function (event) {
 
-        // Browser validation ko pehle run hone do
+        // Browser validation pehle hone do
         if (!interviewForm.checkValidity()) {
             return;
         }
-
-        event.preventDefault();
 
         // Loading show
         interviewStartLoader.style.display = "flex";
@@ -25,7 +23,8 @@ if (interviewForm && interviewStartLoader) {
             startButton.textContent = "Preparing Interview...";
         }
 
-        // Actual form submit
-        interviewForm.submit();
+        // IMPORTANT:
+        // event.preventDefault() nahi lagana hai.
+        // Form normally Django ko submit hoga.
     });
 }

@@ -217,9 +217,16 @@
 
             {% endfor %}
             <div class="roadmap-bottom-action">
-                <a href="{% url 'home' %}" class="back-home-btn">
-                    ← Back to Home
+
+                <a href="{% url 'career_result' %}" class="back-home-btn">
+                    ← Back to Career Overview
                 </a>
+
+                <a href="{% url 'interview_home' %}?from_career=1"
+                class="interview-roadmap-btn">
+                     Prepare for Interview →
+                </a>
+
             </div>
 
 

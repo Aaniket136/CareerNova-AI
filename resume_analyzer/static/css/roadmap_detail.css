@@ -316,3 +316,54 @@ body{
 .logo span{
     color: #ffffff;
 }
+
+/* Interview Preparation Button */
+
+.roadmap-bottom-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin-top: 40px;
+    padding-bottom: 40px;
+}
+
+.interview-roadmap-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 12px 22px;
+
+    background: #ffc107;
+    color: #111827;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+
+    transition: all 0.2s ease;
+}
+
+.interview-roadmap-btn:hover {
+    background: #ffca2c;
+    color: #111827;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+
+    .roadmap-bottom-action {
+        flex-direction: column;
+    }
+
+    .interview-roadmap-btn,
+    .back-home-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+}
