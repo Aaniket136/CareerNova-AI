@@ -22,238 +22,123 @@
 
     <div class="logo">Career<span>Nova</span></div>
 
-    <a href="{% url 'home' %}" class="btn btn-warning fw-semibold">
-        Back to Home
-    </a>
+    <a href="{% url 'home' %}" class="btn btn-warning fw-semibold">Back to Home</a>
 
 </nav>
-
-
 <main class="response-page">
 
     {% if data %}
 
     <div class="result-container">
-
         <!-- Page Heading -->
-
         <div class="result-heading">
-
             <span class="result-badge">
                 <i class="fa-solid fa-wand-magic-sparkles"></i>
                 AI Resume Analysis
             </span>
-
             <h1>Resume Analysis Report</h1>
-
-            <p>
-                Review your resume insights and improve your career readiness.
-            </p>
-
+            <p>Review your resume insights and improve your career readiness.</p>
         </div>
-
-
         <!-- ATS Score -->
-
         <div class="score-card">
-
             <p>Your ATS Score</p>
-
             <div class="score-value">
-
                 {{ data.ats_score }}
-
                 <span>/100</span>
-
             </div>
-
             <small>
                 Based on your resume content, skills and overall structure.
             </small>
-
         </div>
-
-
         <!-- Strengths and Weaknesses -->
-
         <div class="analysis-grid">
-
             <section class="analysis-card strength-card">
-
                 <div class="analysis-title">
-
                     <i class="fa-solid fa-circle-check"></i>
-
                     <h3>Strengths</h3>
-
                 </div>
-
                 <ul>
-
                     {% for item in data.strengths %}
-
                     <li>{{ item }}</li>
-
                     {% empty %}
-
                     <li>No strengths were found.</li>
-
                     {% endfor %}
-
                 </ul>
-
             </section>
-
-
             <section class="analysis-card weakness-card">
-
                 <div class="analysis-title">
-
                     <i class="fa-solid fa-circle-exclamation"></i>
-
                     <h3>Areas to Improve</h3>
-
                 </div>
-
                 <ul>
-
                     {% for item in data.weaknesses %}
-
                     <li>{{ item }}</li>
-
                     {% empty %}
-
                     <li>No improvement areas were found.</li>
-
                     {% endfor %}
-
                 </ul>
-
             </section>
-
         </div>
-
-
         <!-- AI Action Plan -->
-
         <section class="action-card">
-
             <div class="analysis-title">
-
                 <i class="fa-solid fa-lightbulb"></i>
-
                 <h3>AI Action Plan</h3>
-
             </div>
-
             <div class="action-list">
-
                 {% for item in data.improvements %}
-
                 <div class="action-item">
-
                     <span>{{ forloop.counter|stringformat:"02d" }}</span>
-
                     <p>{{ item }}</p>
-
                 </div>
-
                 {% empty %}
-
                 <p>No action plan is available.</p>
-
                 {% endfor %}
-
             </div>
-
         </section>
-
-
         <!-- Career Roadmap -->
-
         <section class="roadmap-cta">
-
             <div>
-
                 <span class="roadmap-icon">
                     <i class="fa-solid fa-compass"></i>
                 </span>
-
                 <h3>Continue Your Career Journey</h3>
-
-                <p>
-                    Turn your resume insights into a personalized
-                    AI-powered career roadmap.
-                </p>
-
+                <p>Turn your resume insights into a personalizedAI-powered career roadmap.</p>
             </div>
-
             <a href="{% url 'career_home' %}?from_resume=1" class="roadmap-button">
-
                 Build My Career Roadmap
-
                 <i class="fa-solid fa-arrow-right"></i>
-
             </a>
-
         </section>
         <!-- Interview Coach -->
-
         <section class="interview-cta">
-
             <div>
-
-                <span class="interview-icon">
-                    <i class="fa-solid fa-comments"></i>
-                </span>
-
+                <span class="interview-icon"><i class="fa-solid fa-comments"></i></span>
                 <h3>Ready for Your Interview?</h3>
-
                 <p>
                     Practice personalized AI interview questions based on your
                     resume, skills and target role.
                 </p>
-
             </div>
-
             <a href="{% url 'interview_home' %}?from_resume=1" class="interview-button">
-
                 Start AI Interview
-
                 <i class="fa-solid fa-arrow-right"></i>
-
             </a>
-
         </section>
-
         <br>
         <!-- Bottom Actions -->
-
         <div class="result-actions">
-
             <a href="{% url 'upload_resume' %}" class="secondary-action">
-
                 <i class="fa-solid fa-arrow-left"></i>
-
                 Analyze Another Resume
-
             </a>
-
-
             <button onclick="window.print()" class="primary-action">
-
                 <i class="fa-solid fa-download"></i>
-
                 Download Report
-
             </button>
-
         </div>
-
     </div>
-
     {% endif %}
-
 </main>
 
 </body>

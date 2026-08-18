@@ -1,199 +1,583 @@
-{% load static %}
+    {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>CareerNova | AI Resume & Career Coach</title>
+        <title>CareerNova | AI Career Platform</title>
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=5">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}?v=6">
 
-<body>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
 
-<!-- NAVBAR -->
+    <body>
 
-<nav>
-    <div class="logo">Career<span>Nova</span></div>
+    <!-- =========================
+            HEADER / NAVBAR
+    ========================= -->
 
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#how-it-works">How It Works</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-</nav>
+    <nav class="main-navbar">
+
+        <div class="logo">
+            Career<span>Nova</span>
+        </div>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="#home">Home</a>
+            </li>
+
+            <li>
+                <a href="#modules">Features</a>
+            </li>
+
+            <li>
+                <a href="#journey">Journey</a>
+            </li>
+
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+
+        </ul>
+
+    </nav>
 
 
-<!-- HERO -->
+    <!-- =========================
+                HERO
+    ========================= -->
 
-<section class="hero" id="home">
+    <section class="home-hero" id="home">
 
-    <div class="hero-content">
+        <div class="home-hero-content">
 
-        <span class="hero-badge">✨ AI-Powered Career Platform</span>
+            <div class="hero-badge">
+                <span>✦</span>
+                AI-POWERED CAREER PLATFORM
+            </div>
 
-        <h1>Build a Better Resume. <span>Shape a Better Career.</span></h1>
+            <h1>
+                Your Career.
+                <span>Your Roadmap.</span>
+                Your Next Move.
+            </h1>
 
-        <p>
-            CareerNova uses AI to analyze your resume, identify skill gaps
-            and create a personalized career roadmap based on your goals.
-        </p>
+            <p class="hero-description">
+                CareerNova helps you understand where you stand,
+                discover what to learn next, and prepare for the
+                role you want.
+            </p>
 
-        <div class="hero-buttons">
-            <a href="{% url 'upload_resume' %}">
-                <button class="primary-btn"><i class="fa-solid fa-file-arrow-up"></i> Analyze Resume</button>
+            <div class="hero-flow">
+
+                <span>Analyze</span>
+                <i class="fa-solid fa-arrow-right"></i>
+
+                <span>Plan</span>
+                <i class="fa-solid fa-arrow-right"></i>
+
+                <span>Prepare</span>
+
+            </div>
+
+            <div class="hero-buttons">
+
+                <a href="{% url 'upload_resume' %}" class="primary-btn">
+                    <i class="fa-solid fa-file-arrow-up"></i>
+                    Start With Resume
+                </a>
+
+                <a href="{% url 'career_home' %}" class="secondary-btn">
+                    <i class="fa-solid fa-compass"></i>
+                    Build Career Roadmap
+                </a>
+
+                <a href="{% url 'interview_home' %}" class="secondary-btn interview-btn">
+                    <i class="fa-solid fa-microphone"></i>
+                    Start Interview
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Minimal Career Progress Visual -->
+
+        <div class="career-preview">
+
+            <div class="preview-header">
+
+                <div>
+                    <span class="preview-label">YOUR CAREER PATH</span>
+                    <h3>Career Progress</h3>
+                </div>
+
+                <span class="preview-status">
+                    <span></span>
+                    AI Ready
+                </span>
+
+            </div>
+
+
+            <div class="preview-step">
+
+                <div class="preview-icon resume-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+
+                <div class="preview-info">
+
+                    <div class="preview-title">
+                        Resume Analysis
+                        <strong>78%</strong>
+                    </div>
+
+                    <div class="preview-line">
+                        <span style="width: 78%;"></span>
+                    </div>
+
+                    <small>ATS & skill insights</small>
+
+                </div>
+
+            </div>
+
+
+            <div class="preview-connector"></div>
+
+
+            <div class="preview-step">
+
+                <div class="preview-icon career-icon">
+                    <i class="fa-solid fa-compass"></i>
+                </div>
+
+                <div class="preview-info">
+
+                    <div class="preview-title">
+                        Career Roadmap
+                        <strong>Ready</strong>
+                    </div>
+
+                    <small>Personalized learning path</small>
+
+                </div>
+
+            </div>
+
+
+            <div class="preview-connector"></div>
+
+
+            <div class="preview-step">
+
+                <div class="preview-icon interview-icon">
+                    <i class="fa-solid fa-microphone"></i>
+                </div>
+
+                <div class="preview-info">
+
+                    <div class="preview-title">
+                        Interview Coach
+                        <strong>08 Questions</strong>
+                    </div>
+
+                    <small>Role-based interview practice</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+            MODULES
+    ========================= -->
+
+    <section class="modules-section" id="modules">
+
+        <div class="section-title">
+
+            <span>CAREERNOVA TOOLS</span>
+
+            <h2>Everything You Need to Move Forward</h2>
+
+            <p>
+                Start with any module or follow the complete
+                CareerNova journey from analysis to interview preparation.
+            </p>
+
+        </div>
+
+
+        <div class="module-grid">
+
+
+            <!-- RESUME -->
+
+            <div class="module-card">
+
+                <div class="module-top">
+
+                    <span class="module-number">01</span>
+
+                    <div class="module-icon">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </div>
+
+                </div>
+
+                <span class="module-label">RESUME ANALYZER</span>
+
+                <h3>Know How Strong Your Resume Really Is.</h3>
+
+                <p>
+                    Analyze your resume with AI and understand
+                    its ATS performance, strengths, weaknesses
+                    and important skills.
+                </p>
+
+                <div class="module-tags">
+
+                    <span>ATS Score</span>
+                    <span>Skills</span>
+                    <span>Improvements</span>
+
+                </div>
+
+                <a href="{% url 'upload_resume' %}" class="module-link">
+                    Analyze Resume
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <!-- CAREER -->
+
+            <div class="module-card featured-module">
+
+                <div class="module-top">
+
+                    <span class="module-number">02</span>
+
+                    <div class="module-icon">
+                        <i class="fa-solid fa-compass"></i>
+                    </div>
+
+                </div>
+
+                <span class="module-label">CAREER COACH</span>
+
+                <h3>Turn Your Goal Into a Practical Roadmap.</h3>
+
+                <p>
+                    Identify skill gaps and get a personalized
+                    learning roadmap designed around your target
+                    role and timeline.
+                </p>
+
+                <div class="module-tags">
+
+                    <span>Skill Gaps</span>
+                    <span>Roadmap</span>
+                    <span>Projects</span>
+
+                </div>
+
+                <a href="{% url 'career_home' %}" class="module-link">
+                    Build My Roadmap
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <!-- INTERVIEW -->
+
+            <div class="module-card">
+
+                <div class="module-top">
+
+                    <span class="module-number">03</span>
+
+                    <div class="module-icon">
+                        <i class="fa-solid fa-microphone"></i>
+                    </div>
+
+                </div>
+
+                <span class="module-label">INTERVIEW COACH</span>
+
+                <h3>Prepare For the Role You Want.</h3>
+
+                <p>
+                    Practice personalized technical, project,
+                    resume and HR questions based on your profile.
+                </p>
+
+                <div class="module-tags">
+
+                    <span>Technical</span>
+                    <span>Projects</span>
+                    <span>HR</span>
+
+                </div>
+
+                <a href="{% url 'interview_home' %}" class="module-link">
+                    Start Interview
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+            CAREER JOURNEY
+    ========================= -->
+
+    <section class="journey-section" id="journey">
+
+        <div class="section-title">
+
+            <span>YOUR CAREER JOURNEY</span>
+
+            <h2>Analyze. Plan. Prepare.</h2>
+
+            <p>
+                CareerNova connects your career journey while keeping
+                every module independently accessible.
+            </p>
+
+        </div>
+
+
+        <div class="journey-flow">
+
+
+            <div class="journey-item">
+
+                <div class="journey-number">01</div>
+
+                <div class="journey-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+
+                <h3>Understand Yourself</h3>
+
+                <span>Resume Analyzer</span>
+
+            </div>
+
+
+            <div class="journey-line">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+
+            <div class="journey-item">
+
+                <div class="journey-number">02</div>
+
+                <div class="journey-icon">
+                    <i class="fa-solid fa-compass"></i>
+                </div>
+
+                <h3>Build Your Path</h3>
+
+                <span>Career Coach</span>
+
+            </div>
+
+
+            <div class="journey-line">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+
+            <div class="journey-item">
+
+                <div class="journey-number">03</div>
+
+                <div class="journey-icon">
+                    <i class="fa-solid fa-microphone"></i>
+                </div>
+
+                <h3>Prepare For Your Role</h3>
+
+                <span>Interview Coach</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="journey-note">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <span>
+                You can start anywhere. Continue whenever you're ready.
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+                CTA
+    ========================= -->
+
+    <section class="home-cta">
+
+        <div class="cta-content">
+
+            <span class="cta-label">READY FOR YOUR NEXT STEP?</span>
+
+            <h2>Take Control of Your Career Journey.</h2>
+
+            <p>
+                Start with your resume, build your roadmap,
+                or prepare for your next interview.
+            </p>
+
+        </div>
+
+
+        <div class="cta-buttons">
+
+            <a href="{% url 'upload_resume' %}" class="primary-btn">
+                <i class="fa-solid fa-rocket"></i>
+                Analyze Resume
             </a>
 
-            <a href="{% url 'career_home' %}">
-                <button class="secondary-btn"><i class="fa-solid fa-compass"></i> Explore Career Coach</button>
+            <a href="{% url 'career_home' %}" class="secondary-btn">
+                Build Career Roadmap
             </a>
+
+            <a href="{% url 'interview_home' %}" class="secondary-btn interview-btn">
+                <i class="fa-solid fa-microphone"></i>
+                Start Interview
+            </a>
+
         </div>
 
-    </div>
-
-    <div class="hero-img-container">
-        <img src="{% static 'images/about.jpg' %}" alt="AI Career Guidance">
-    </div>
-
-</section>
+    </section>
 
 
-<!-- FEATURES -->
+    <!-- =========================
+                FOOTER
+    ========================= -->
 
-<section class="features" id="features">
+    <footer class="site-footer" id="contact">
 
-    <div class="section-title">
-        <span>OUR FEATURES</span>
+        <div class="footer-main">
 
-        <h2>Everything You Need For Career Growth</h2>
 
-        <p>
-            Improve your resume, understand your skills
-            and build a clear path toward your career goal.
-        </p>
-    </div>
+            <div class="footer-brand">
 
-    <div class="feature-box">
+                <div class="logo">
+                    Career<span>Nova</span>
+                </div>
 
-        <div class="feature-card">
-            <div class="feature-icon">📄</div>
-            <h3>AI Resume Analyzer</h3>
-            <p>Upload your resume and receive AI-powered feedback in seconds.</p>
+                <p>
+                    AI-powered career guidance for your next move.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Platform</h4>
+
+                <a href="{% url 'upload_resume' %}">
+                    Resume Analyzer
+                </a>
+
+                <a href="{% url 'career_home' %}">
+                    Career Coach
+                </a>
+
+                <a href="{% url 'interview_home' %}">
+                    Interview Coach
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Journey</h4>
+
+                <a href="#modules">
+                    Analyze
+                </a>
+
+                <a href="#journey">
+                    Plan
+                </a>
+
+                <a href="{% url 'interview_home' %}">
+                    Prepare
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Connect</h4>
+
+                <a href="mailto:tiwarianiket004@gmail.com">
+                    <i class="fa-solid fa-envelope"></i>
+                    Email
+                </a>
+
+                <a href="https://www.linkedin.com/in/aniket-tiwari-916b74395"
+                target="_blank">
+
+                    <i class="fa-brands fa-linkedin"></i>
+                    LinkedIn
+
+                </a>
+
+            </div>
+
         </div>
 
-        <div class="feature-card">
-            <div class="feature-icon">📊</div>
-            <h3>ATS Score</h3>
-            <p>Understand how well your resume performs for ATS screening.</p>
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 CareerNova
+            </span>
+
+            <span>
+                Built with Django & AI
+            </span>
+
         </div>
 
-        <div class="feature-card">
-            <div class="feature-icon">🧠</div>
-            <h3>Skill Gap Analysis</h3>
-            <p>Identify missing skills and improve your career readiness.</p>
-        </div>
-
-        <div class="feature-card">
-            <div class="feature-icon">🧭</div>
-            <h3>AI Career Coach</h3>
-            <p>Get a personalized roadmap based on your skills and goals.</p>
-        </div>
-
-    </div>
-
-</section>
+    </footer>   
 
 
-<!-- HOW IT WORKS -->
-
-<section class="how-it-works" id="how-it-works">
-
-    <div class="section-title">
-        <span>HOW IT WORKS</span>
-
-        <h2>Your Career Journey Starts Here</h2>
-    </div>
-
-    <div class="steps">
-
-        <div class="step">
-            <div class="step-number">01</div>
-            <h3>Share Your Profile</h3>
-            <p>Upload your resume or enter your skills and career goal.</p>
-        </div>
-
-        <div class="step">
-            <div class="step-number">02</div>
-            <h3>AI Understands You</h3>
-            <p>AI analyzes your experience, skills and career direction.</p>
-        </div>
-
-        <div class="step">
-            <div class="step-number">03</div>
-            <h3>Get Your Growth Plan</h3>
-            <p>Receive insights, skill suggestions and a personalized roadmap.</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- CTA -->
-
-<section class="home-cta">
-
-    <h2>Ready to Take the Next Step?</h2>
-
-    <p>Start improving your resume and planning your career with AI.</p>
-
-    <div class="hero-buttons">
-
-        <a href="{% url 'upload_resume' %}">
-            <button class="primary-btn">Analyze My Resume</button>
-        </a>
-
-        <a href="{% url 'career_home' %}">
-            <button class="secondary-btn">Build My Career Roadmap</button>
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- CONTACT -->
-
-<footer class="contact" id="contact">
-
-    <h2>CareerNova</h2>
-
-    <p class="footer-text">
-        AI-powered resume analysis and personalized career guidance.
-    </p>
-
-    <div class="contact-links">
-
-        <a href="mailto:tiwarianiket004@gmail.com" class="contact-item">
-            <i class="fa-solid fa-envelope"></i>
-            <span>tiwarianiket004@gmail.com</span>
-        </a>
-
-        <a href="https://www.linkedin.com/in/aniket-tiwari-916b74395" target="_blank" class="contact-item">
-            <i class="fa-brands fa-linkedin"></i>
-            <span>LinkedIn Profile</span>
-        </a>
-
-    </div>
-
-    <p class="copyright">© 2026 CareerNova. Built with Django and AI.</p>
-
-</footer>
-
-</body>
-</html>
+    </body>         
+    </html>
